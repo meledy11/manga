@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🌙 Sailor Moon — 中国语レッスン | Уроки китайского</title>
+  <title>🌙 Sailor Moon — 中国语学习 | Учим китайский</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&family=Comfortaa:wght@400;700&display=swap');
 
@@ -16,24 +16,28 @@
       padding-bottom: 40px;
     }
 
-    .manga-container { max-width: 500px; margin: 0 auto; padding: 0 10px; }
+    .manga-container { max-width: 520px; margin: 0 auto; padding: 0 8px; }
 
     /* ===== ВКЛАДКИ ===== */
     .tabs-header {
       position: sticky; top: 0; z-index: 100;
-      background: rgba(255,240,245,0.97);
+      background: rgba(255,240,245,0.98);
       backdrop-filter: blur(12px);
-      padding: 14px 10px 10px;
-      display: flex; gap: 8px; justify-content: center;
+      padding: 10px 5px 8px;
+      display: flex; gap: 5px; justify-content: center;
       border-bottom: 2px solid #ffd6e0;
       box-shadow: 0 4px 16px rgba(255,107,157,0.12);
+      overflow-x: auto;
+      white-space: nowrap;
     }
+    .tabs-header::-webkit-scrollbar { display: none; }
+
     .tab-btn {
       background: white; border: 2px solid #ffd6e0;
-      padding: 9px 14px; border-radius: 22px;
-      font-family: inherit; font-size: 13px; font-weight: 700;
+      padding: 7px 10px; border-radius: 20px;
+      font-family: inherit; font-size: 11px; font-weight: 700;
       color: #cc88aa; cursor: pointer; transition: all 0.25s;
-      flex: 1; text-align: center;
+      flex-shrink: 0;
     }
     .tab-btn:hover { background: #fff5f8; transform: translateY(-2px); }
     .tab-btn.active {
@@ -42,19 +46,14 @@
       box-shadow: 0 4px 14px rgba(196,77,255,0.35);
     }
 
-    /* ===== КОНТЕНТ ВКЛАДОК ===== */
-    .tab-content { display: none; padding-top: 20px; animation: fadeIn 0.4s ease; }
-    .tab-content.active { display: block; }
-    @keyframes fadeIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
-
     /* ===== ЗАГОЛОВОК СЦЕНЫ ===== */
     .scene-title {
-      border-radius: 20px; padding: 28px 20px; text-align: center;
-      margin-bottom: 18px; box-shadow: 0 8px 32px rgba(196,77,255,0.25);
+      border-radius: 20px; padding: 22px 18px; text-align: center;
+      margin: 15px 0 18px; box-shadow: 0 8px 32px rgba(196,77,255,0.25);
       position: relative; overflow: hidden; color: white;
     }
-    .scene-title h1 { font-size: 19px; margin-bottom: 6px; text-shadow: 2px 2px 8px rgba(0,0,0,0.2); }
-    .scene-title p  { font-size: 13px; opacity: 0.92; margin-bottom: 16px; }
+    .scene-title h1 { font-size: 17px; margin-bottom: 5px; text-shadow: 2px 2px 8px rgba(0,0,0,0.2); }
+    .scene-title p  { font-size: 12px; opacity: 0.92; margin-bottom: 14px; }
     .scene-title .emoji-bg {
       position: absolute; font-size: 80px; opacity: 0.12;
       top: 50%; left: 50%; transform: translate(-50%,-50%);
@@ -62,60 +61,52 @@
 
     .play-all-btn {
       background: white; color: #c44dff; border: none;
-      padding: 11px 26px; border-radius: 30px;
-      font-size: 14px; font-weight: 700; cursor: pointer;
+      padding: 9px 22px; border-radius: 30px;
+      font-size: 13px; font-weight: 700; cursor: pointer;
       font-family: inherit; transition: all 0.2s;
       box-shadow: 0 4px 16px rgba(0,0,0,0.15);
       position: relative; z-index: 1;
     }
     .play-all-btn:hover  { transform: scale(1.06); }
-    .play-all-btn:active { transform: scale(0.97); }
     .play-all-btn.playing { background: #ffe4ec; color: #ff6b9d; }
 
     /* ===== ПАНЕЛЬ ===== */
     .panel {
-      background: white; border-radius: 16px; margin-bottom: 16px;
+      background: white; border-radius: 16px; margin-bottom: 14px;
       overflow: hidden; box-shadow: 0 4px 20px rgba(255,107,157,0.13);
       border: 2px solid #ffd6e0; transition: all 0.3s;
       animation: slideUp 0.5s ease both;
     }
-    .panel:nth-child(1){animation-delay:.05s} .panel:nth-child(2){animation-delay:.10s}
-    .panel:nth-child(3){animation-delay:.15s} .panel:nth-child(4){animation-delay:.20s}
-    .panel:nth-child(5){animation-delay:.25s} .panel:nth-child(6){animation-delay:.30s}
-    .panel:nth-child(7){animation-delay:.35s} .panel:nth-child(8){animation-delay:.40s}
-    .panel:nth-child(9){animation-delay:.45s} .panel:nth-child(10){animation-delay:.50s}
-
-    @keyframes slideUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
-
     .panel.active-panel {
       border-color: #c44dff;
       box-shadow: 0 0 0 3px rgba(196,77,255,0.18), 0 6px 28px rgba(255,107,157,0.22);
     }
 
+    @keyframes slideUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+
     .panel-header {
       display: flex; justify-content: space-between; align-items: center;
-      padding: 11px 15px; background: #fffafa;
+      padding: 9px 12px; background: #fffafa;
       border-bottom: 1px dashed #f0e0e8;
     }
     .panel-num {
-      font-weight: 700; color: #c44dff; font-size: 13px;
+      font-weight: 700; color: #c44dff; font-size: 12px;
       display: flex; align-items: center; gap: 6px;
     }
     .panel-num-badge {
       background: linear-gradient(135deg,#ff6b9d,#c44dff); color: white;
-      width: 24px; height: 24px; border-radius: 50%;
+      width: 22px; height: 22px; border-radius: 50%;
       display: inline-flex; align-items: center; justify-content: center;
-      font-size: 12px;
+      font-size: 11px;
     }
 
     .speak-btn {
       background: linear-gradient(135deg,#ff6b9d,#c44dff); color: white;
-      border: none; width: 34px; height: 34px; border-radius: 50%;
+      border: none; width: 32px; height: 32px; border-radius: 50%;
       cursor: pointer; display: flex; align-items: center; justify-content: center;
-      font-size: 15px; transition: 0.2s; flex-shrink: 0;
+      font-size: 14px; transition: 0.2s; flex-shrink: 0;
     }
     .speak-btn:hover  { transform: scale(1.15); }
-    .speak-btn:active { transform: scale(0.9); }
     .speak-btn.speaking { animation: pulse 0.9s ease-in-out infinite; }
     @keyframes pulse {
       0%,100%{box-shadow:0 0 0 0 rgba(196,77,255,0.45)}
@@ -141,11 +132,11 @@
     .panel-img-wrap.has-error .panel-img     { display: none; }
     .panel-img-wrap.has-error .img-error-msg { display: flex; }
 
-    /* Диалог */
-    .dialogue { padding: 14px 15px; }
+    /* ===== ДИАЛОГ - УВЕЛИЧЕННЫЙ ТЕКСТ ===== */
+    .dialogue { padding: 16px 14px; }
 
     .bubble {
-      padding: 12px 13px; border-radius: 14px; margin-bottom: 10px;
+      padding: 14px 13px; border-radius: 14px; margin-bottom: 12px;
       border: 2px solid transparent; transition: all 0.3s;
     }
     .bubble:last-child { margin-bottom: 0; }
@@ -155,18 +146,29 @@
     .bubble.highlight { filter: brightness(1.08) saturate(1.15); transform: scale(1.015); }
 
     .speaker-tag {
-      font-size: 11px; font-weight: 700; margin-bottom: 5px;
+      font-size: 11px; font-weight: 700; margin-bottom: 6px;
       display: flex; align-items: center; gap: 4px;
     }
     .speaker-tag.w { color: #4488cc; }
     .speaker-tag.s { color: #cc4488; }
     .speaker-tag.m { color: #8844cc; }
 
+    /* КРУПНЫЕ ИЕРОГЛИФЫ И ПИНЬИНЬ */
     .zh-text {
-      font-family: 'Noto Sans SC',sans-serif; font-size: 16px;
-      font-weight: 700; color: #2a2a2a; margin-bottom: 3px; line-height: 1.5;
+      font-family: 'Noto Sans SC',sans-serif; 
+      font-size: 22px;              /* УВЕЛИЧЕНО с 16px */
+      font-weight: 700; 
+      color: #2a2a2a; 
+      margin-bottom: 5px; 
+      line-height: 1.6;
     }
-    .py-text { font-size: 11px; color: #aaa; font-style: italic; margin-bottom: 5px; }
+    .py-text { 
+      font-size: 16px;              /* УВЕЛИЧЕНО с 11px */
+      color: #888; 
+      font-style: italic; 
+      margin-bottom: 7px; 
+      font-weight: 600;
+    }
     .ru-text {
       font-size: 13px; color: #777; line-height: 1.4;
       padding-left: 9px; border-left: 3px solid #ffd6e0;
@@ -178,7 +180,7 @@
       display: none; align-items: center; gap: 6px;
       font-size: 11px; color: #c44dff; font-weight: 700;
       padding: 5px 12px; background: #faf0ff;
-      border-radius: 20px; margin-top: 8px;
+      border-radius: 20px; margin-top: 10px;
     }
     .now-playing-bar.visible { display: flex; }
     .bars { display: flex; gap: 2px; align-items: flex-end; height: 11px; }
@@ -194,7 +196,7 @@
 
     /* ===== СЛОВАРЬ ===== */
     .vocab-section {
-      background: white; border-radius: 16px; padding: 20px 16px;
+      background: white; border-radius: 16px; padding: 18px 14px;
       margin-top: 16px; border: 2px solid #ffd6e0;
       box-shadow: 0 4px 20px rgba(255,107,157,0.1);
     }
@@ -216,7 +218,7 @@
     .vocab-table tr:nth-child(even) td { background: #fff8fa; }
     .vocab-table .hanzi-cell {
       font-family: 'Noto Sans SC',sans-serif; font-weight: 700;
-      color: #333; font-size: 15px;
+      color: #333; font-size: 16px;
     }
     .v-speak-btn {
       background: none; border: 1px solid #ddd; border-radius: 50%;
@@ -224,13 +226,11 @@
     }
     .v-speak-btn:hover { background: #ffe4ec; border-color: #ff6b9d; }
 
-    /* ===== ФУТЕР ===== */
     .footer {
       text-align: center; padding: 28px 20px; color: #cc88aa; font-size: 12px;
     }
     .footer .moon { font-size: 26px; display: block; margin-bottom: 8px; }
 
-    /* ===== TOAST ===== */
     .toast {
       position: fixed; bottom: 22px; left: 50%;
       transform: translateX(-50%) translateY(80px);
@@ -247,266 +247,262 @@
 <!-- ===== ВКЛАДКИ ===== -->
 <div class="tabs-header">
   <button class="tab-btn active" id="btn-restaurant" onclick="switchTab('restaurant')">🍜 Ресторан</button>
-  <button class="tab-btn"        id="btn-taxi"       onclick="switchTab('taxi')">🚕 Такси</button>
-  <button class="tab-btn"        id="btn-shop"       onclick="switchTab('shop')">🛍️ Магазин</button>
+  <button class="tab-btn" id="btn-taxi" onclick="switchTab('taxi')">🚕 Такси</button>
+  <button class="tab-btn" id="btn-shop" onclick="switchTab('shop')">🛍️ Магазин</button>
+  <button class="tab-btn" id="btn-bubbletea" onclick="switchTab('bubbletea')">🧋 Бабл-ти</button>
+  <button class="tab-btn" id="btn-hotel" onclick="switchTab('hotel')">🏨 Отель</button>
+  <button class="tab-btn" id="btn-metro" onclick="switchTab('metro')">🚇 Метро</button>
 </div>
 
 <div class="manga-container">
 
-  <!-- ======================================================
-       ВКЛАДКА 1 — РЕСТОРАН  (IMG_7460 … IMG_7468)
-  ======================================================= -->
+  <!-- ВКЛАДКА 1 — РЕСТОРАН -->
   <div id="tab-restaurant" class="tab-content active">
-
     <div class="scene-title" style="background:linear-gradient(135deg,#ff6b9d,#c44dff,#6b9dff)">
-      <div class="emoji-bg">🍜</div>
-      <h1>🌙 在餐厅 — В ресторане</h1>
-      <p>Урок 1 · Заказ еды в китайском ресторане</p>
+      <div class="emoji-bg"></div>
+      <h1> 在餐厅 — В ресторане</h1>
+      <p>Урок 1 · Заказ еды</p>
       <button class="play-all-btn" id="playBtn-restaurant" onclick="playAll('restaurant')">🔊 Воспроизвести всё</button>
     </div>
-
     <div id="panels-restaurant"></div>
-
     <div class="vocab-section">
       <div class="vocab-title">📚 Словарь — 餐厅词汇</div>
       <table class="vocab-table" id="vocab-restaurant"></table>
     </div>
   </div>
 
-  <!-- ======================================================
-       ВКЛАДКА 2 — ТАКСИ  (IMG_7475…7478, 7480, 7481)
-  ======================================================= -->
+  <!-- ВКЛАДКА 2 — ТАКСИ -->
   <div id="tab-taxi" class="tab-content">
-
     <div class="scene-title" style="background:linear-gradient(135deg,#4facfe,#00c6fb,#00f2fe)">
       <div class="emoji-bg">🚕</div>
       <h1>🌙 坐出租车 — В такси</h1>
-      <p>Урок 2 · Поездка по городу на такси</p>
+      <p>Урок 2 · Поездка по городу</p>
       <button class="play-all-btn" id="playBtn-taxi" onclick="playAll('taxi')">🔊 Воспроизвести всё</button>
     </div>
-
     <div id="panels-taxi"></div>
-
     <div class="vocab-section">
       <div class="vocab-title">📚 Словарь — 出租车词汇</div>
       <table class="vocab-table" id="vocab-taxi"></table>
     </div>
   </div>
 
-  <!-- ======================================================
-       ВКЛАДКА 3 — МАГАЗИН  (IMG_7482 … IMG_7487)
-  ======================================================= -->
+  <!-- ВКЛАДКА 3 — МАГАЗИН -->
   <div id="tab-shop" class="tab-content">
-
     <div class="scene-title" style="background:linear-gradient(135deg,#fa709a,#ff9a76,#fee140)">
       <div class="emoji-bg">🛍️</div>
       <h1>🌙 买衣服 — Покупка одежды</h1>
-      <p>Урок 3 · Шопинг в магазине одежды</p>
+      <p>Урок 3 · Шопинг</p>
       <button class="play-all-btn" id="playBtn-shop" onclick="playAll('shop')">🔊 Воспроизвести всё</button>
     </div>
-
     <div id="panels-shop"></div>
-
     <div class="vocab-section">
-      <div class="vocab-title">📚 Словарь — 商店词汇</div>
+      <div class="vocab-title"> Словарь — 商店词汇</div>
       <table class="vocab-table" id="vocab-shop"></table>
     </div>
   </div>
 
-  <!-- ФУТЕР -->
-  <div class="footer">
-    <span class="moon">🌙</span>
-    美少女战士 × 中国语レッスン<br>
-    Sailor Moon Chinese Lessons · 2025<br><br>
-    <small>Нажми 🔊 для озвучки · Лучше работает в Chrome</small>
+  <!-- ВКЛАДКА 4 — БАБЛ-ТИ -->
+  <div id="tab-bubbletea" class="tab-content">
+    <div class="scene-title" style="background:linear-gradient(135deg,#a18cd1,#fbc2eb,#ff9a9e)">
+      <div class="emoji-bg"></div>
+      <h1> 珍珠奶茶 — Бабл-ти</h1>
+      <p>Урок 4 · Заказ напитка</p>
+      <button class="play-all-btn" id="playBtn-bubbletea" onclick="playAll('bubbletea')"> Воспроизвести всё</button>
+    </div>
+    <div id="panels-bubbletea"></div>
+    <div class="vocab-section">
+      <div class="vocab-title"> Словарь — 奶茶词汇</div>
+      <table class="vocab-table" id="vocab-bubbletea"></table>
+    </div>
   </div>
 
-</div><!-- /manga-container -->
+  <!-- ВКЛАДКА 5 — ОТЕЛЬ -->
+  <div id="tab-hotel" class="tab-content">
+    <div class="scene-title" style="background:linear-gradient(135deg,#e0c3fc,#8ec5fc,#c2e9fb)">
+      <div class="emoji-bg">🏨</div>
+      <h1>🌙 在酒店 — В отеле</h1>
+      <p>Урок 5 · Заселение</p>
+      <button class="play-all-btn" id="playBtn-hotel" onclick="playAll('hotel')">🔊 Воспроизвести всё</button>
+    </div>
+    <div id="panels-hotel"></div>
+    <div class="vocab-section">
+      <div class="vocab-title"> Словарь — 酒店词汇</div>
+      <table class="vocab-table" id="vocab-hotel"></table>
+    </div>
+  </div>
+
+  <!-- ВКЛАДКА 6 — МЕТРО -->
+  <div id="tab-metro" class="tab-content">
+    <div class="scene-title" style="background:linear-gradient(135deg,#667eea,#764ba2,#f093fb)">
+      <div class="emoji-bg">🚇</div>
+      <h1>🌙 坐地铁 — В метро</h1>
+      <p>Урок 6 · Общественный транспорт</p>
+      <button class="play-all-btn" id="playBtn-metro" onclick="playAll('metro')"> Воспроизвести всё</button>
+    </div>
+    <div id="panels-metro"></div>
+    <div class="vocab-section">
+      <div class="vocab-title"> Словарь — 地铁词汇</div>
+      <table class="vocab-table" id="vocab-metro"></table>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span class="moon"></span>
+    Sailor Moon Chinese Learning · 2025<br>
+    <small>Крупный текст · Медленная озвучка · Удобно учить!</small>
+  </div>
+
+</div>
 
 <div class="toast" id="toast"></div>
 
-<!-- =========================================================
-     JAVASCRIPT
-========================================================= -->
 <script>
 /* =============================================================
-   ДАННЫЕ ВСЕХ ТРЁХ СЦЕН
-   img — точное имя файла (без папки и расширения)
+   ДАННЫЕ ВСЕХ СЦЕН
 ============================================================= */
 const SCENES = {
 
-  // ── РЕСТОРАН ──────────────────────────────────────────
   restaurant: {
     panels: [
-      { img:"IMG_7460", zh:"你好，欢迎光临！请问几位？",
-        py:"Nǐ hǎo, huānyíng guānglín! Qǐngwèn jǐ wèi?",
-        ru:"Здравствуйте, добро пожаловать! Сколько человек?", who:"w",
-        speaker:"🧑🍳 Официант" },
-
-      { img:"IMG_7461", zh:"就我一个人。",
-        py:"Jiù wǒ yí gè rén.",
-        ru:"Только я одна.", who:"s",
-        speaker:"🌙 Сэйлор Мун" },
-
-      { img:"IMG_7462", zh:"这是菜单，需要我推荐吗？",
-        py:"Zhè shì càidān, xūyào wǒ tuījiàn ma?",
-        ru:"Вот меню. Нужны ли рекомендации?", who:"w",
-        speaker:"🧑‍ Официант" },
-
-      { img:"IMG_7463", zh:"招牌菜是红烧牛肉面，炸薯条也很受欢迎。",
-        py:"Zhāopái cài shì hóngshāo niúròu miàn, zhà shǔtiáo yě hěn shòu huānyíng.",
-        ru:"Фирменное блюдо — лапша с тушёной говядиной. Картошка фри тоже очень популярна.", who:"w",
-        speaker:"🧑‍🍳 Официант" },
-
-      { img:"IMG_7463", zh:"来一碗牛肉面，一份炸薯条！",
-        py:"Lái yì wǎn niúròu miàn, yí fèn zhà shǔtiáo!",
-        ru:"Одну порцию лапши с говядиной и одну порцию картошки фри!", who:"s",
-        speaker:"🌙 Сэйлор Мун" },
-
-      { img:"IMG_7464", zh:"来一杯橙汁，要冰的！谢谢！",
-        py:"Lái yì bēi chéngzhī, yào bīng de! Xièxie!",
-        ru:"Один стакан апельсинового сока со льдом! Спасибо! 🧡", who:"s",
-        speaker:"🌙 Сэйлор Мун" },
-
-      { img:"IMG_7465", zh:"您的菜来了！请慢用。",
-        py:"Nín de cài lái le! Qǐng màn yòng.",
-        ru:"Ваш заказ готов! Приятного аппетита.", who:"w",
-        speaker:"🧑‍ Официант" },
-
-      { img:"IMG_7466", zh:"嗯～太好吃了！",
-        py:"Ńg~ Tài hǎo chī le!",
-        ru:"Ммм~ Как вкусно! ✨", who:"s",
-        speaker:"🌙 Сэйлор Мун" },
-
-      { img:"IMG_7467", zh:"服务员，买单！——一共四十五元。",
-        py:"Fúwùyuán, mǎidān! —— Yígòng sìshíwǔ yuán.",
-        ru:"Официант, счёт! — Итого 45 юаней.", who:"m",
-        speaker:"🗣️ Диалог" },
-
-      { img:"IMG_7468", zh:"再见！下次还来！——欢迎下次再来！",
-        py:"Zàijiàn! Xià cì hái lái! —— Huānyíng xià cì zài lái!",
-        ru:"До свидания! Приду ещё! — Будем рады видеть вас снова! 💛", who:"m",
-        speaker:"🗣️ Диалог" },
+      { img:"IMG_7460", zh:"你好，欢迎光临！请问几位？", py:"Nǐ hǎo, huānyíng guānglín! Qngwèn jǐ wèi?", ru:"Здравствуйте! Сколько человек?", who:"w", speaker:"🧑‍ Официант" },
+      { img:"IMG_7461", zh:"就我一个人。", py:"Jiù wǒ yí gè rén.", ru:"Только я одна.", who:"s", speaker:"🌙 Сэйлор Мун" },
+      { img:"IMG_7462", zh:"这是菜单，需要我推荐吗？", py:"Zhè shì càidān, xūyào wǒ tuījiàn ma?", ru:"Вот меню. Нужны рекомендации?", who:"w", speaker:"‍🍳 Официант" },
+      { img:"IMG_7463", zh:"招牌菜是红烧牛肉面，炸薯条也很受欢迎。", py:"Zhāopái cài shì hóngshāo niúròu miàn, zhà shǔtiáo yě hěn shòu huānyíng.", ru:"Фирменное — лапша с говядиной. Картошка фри популярна.", who:"w", speaker:"🧑🍳 Официант" },
+      { img:"IMG_7463", zh:"来一碗牛肉面，一份炸薯条！", py:"Lái yì wǎn niúròu miàn, yí fèn zhà shǔtiáo!", ru:"Одну лапшу и одну картошку фри!", who:"s", speaker:"🌙 Сэйлор Мун" },
+      { img:"IMG_7464", zh:"来一杯橙汁，要冰的！谢谢！", py:"Lái yì bēi chéngzhī, yào bīng de! Xièxie!", ru:"Апельсиновый сок со льдом! Спасибо!", who:"s", speaker:"🌙 Сэйлор Мун" },
+      { img:"IMG_7465", zh:"您的菜来了！请慢用。", py:"Nín de cài lái le! Qǐng màn yòng.", ru:"Ваш заказ готов! Приятного аппетита.", who:"w", speaker:"🧑‍ Официант" },
+      { img:"IMG_7466", zh:"嗯～太好吃了！", py:"Ńg~ Tài hǎo chī le!", ru:"Ммм~ Как вкусно!", who:"s", speaker:"🌙 Сэйлор Мун" },
+      { img:"IMG_7467", zh:"服务员，买单！——一共四十五元。", py:"Fúwùyuán, mǎidān! —— Yígòng sìshíwǔ yuán.", ru:"Счёт! — Итого 45 юаней.", who:"m", speaker:"🗣️ Диалог" },
+      { img:"IMG_7468", zh:"再见！下次还来！——欢迎下次再来！", py:"Zàijiàn! Xià cì hái lái! —— Huānyíng xià cì zài lái!", ru:"До свидания! — Приходите ещё!", who:"m", speaker:"🗣️ Диалог" },
     ],
     vocab: [
-      { h:"你好",     p:"nǐ hǎo",            r:"здравствуйте" },
-      { h:"欢迎光临", p:"huānyíng guānglín", r:"добро пожаловать" },
-      { h:"几位",     p:"jǐ wèi",            r:"сколько человек" },
-      { h:"菜单",     p:"càidān",            r:"меню" },
-      { h:"推荐",     p:"tuījiàn",           r:"рекомендовать" },
-      { h:"招牌菜",   p:"zhāopái cài",       r:"фирменное блюдо" },
-      { h:"牛肉面",   p:"niúròu miàn",       r:"лапша с говядиной" },
-      { h:"炸薯条",   p:"zhà shǔtiáo",       r:"картошка фри" },
-      { h:"橙汁",     p:"chéngzhī",          r:"апельсиновый сок" },
-      { h:"冰的",     p:"bīng de",           r:"со льдом" },
-      { h:"请慢用",   p:"qǐng màn yòng",     r:"приятного аппетита" },
-      { h:"好吃",     p:"hǎo chī",           r:"вкусно" },
-      { h:"买单",     p:"mǎidān",            r:"оплатить счёт" },
-      { h:"元",       p:"yuán",              r:"юань" },
-      { h:"再见",     p:"zàijiàn",           r:"до свидания" },
+      { h:"欢迎", p:"huānyíng", r:"добро пожаловать" },
+      { h:"菜单", p:"càidān", r:"меню" },
+      { h:"推荐", p:"tuījiàn", r:"рекомендовать" },
+      { h:"牛肉面", p:"niúròu miàn", r:"лапша с говядиной" },
+      { h:"炸薯条", p:"zhà shǔtiáo", r:"картошка фри" },
+      { h:"橙汁", p:"chéngzhī", r:"апельсиновый сок" },
+      { h:"买单", p:"mǎidān", r:"оплатить счёт" }
     ]
   },
 
-  // ── ТАКСИ ─────────────────────────────────────────────
-  // Файлы: 7475, 7476, 7477, 7478, 7480, 7481  (7479 пропущен!)
   taxi: {
     panels: [
-      { img:"IMG_7475", zh:"师傅！去火车站，谢谢！",
-        py:"Shīfu! Qù huǒchēzhàn, xièxie!",
-        ru:"Водитель! На вокзал, пожалуйста!", who:"s",
-        speaker:"🌙 Сэйлор Мун" },
-
-      { img:"IMG_7476", zh:"好的，请上车。系好安全带。",
-        py:"Hǎo de, qǐng shàng chē. Jì hǎo ānquán dài.",
-        ru:"Хорошо, садитесь. Пристегните ремень.", who:"w",
-        speaker:"🚕 Водитель" },
-
-      { img:"IMG_7477", zh:"大概需要多长时间？",
-        py:"Dàgài xūyào duō cháng shíjiān?",
-        ru:"Примерно сколько времени займёт?", who:"s",
-        speaker:"🌙 Сэйлор Мун" },
-
-      { img:"IMG_7478", zh:"不堵车的话，大概二十分钟。",
-        py:"Bù dǔchē de huà, dàgài èrshí fēnzhōng.",
-        ru:"Если без пробок — примерно 20 минут.", who:"w",
-        speaker:"🚕 Водитель" },
-
-      { img:"IMG_7480", zh:"到了！一共三十块。扫码支付可以吗？",
-        py:"Dào le! Yígòng sānshí kuài. Sǎomǎ zhīfù kěyǐ ma?",
-        ru:"Приехали! Итого 30 юаней. Можно по QR-коду?", who:"m",
-        speaker:"🗣️ Диалог" },
-
-      { img:"IMG_7481", zh:"再见！谢谢师傅！——欢迎下次乘坐！",
-        py:"Zàijiàn! Xièxie shīfu! —— Huānyíng xià cì chéngzuò!",
-        ru:"До свидания! Спасибо водителю! — Приезжайте ещё! 💛", who:"m",
-        speaker:"🗣️ Диалог" },
+      { img:"IMG_7469", zh:"师傅，去火车站。", py:"Shīfu, qù huǒchēzhàn.", ru:"Водитель, на вокзал.", who:"s", speaker:" Сэйлор Мун" },
+      { img:"IMG_7470", zh:"好的，请上车。", py:"Hǎo de, qǐng shàng chē.", ru:"Хорошо, садитесь.", who:"w", speaker:" Водитель" },
+      { img:"IMG_7471", zh:"大概需要多长时间？", py:"Dàgài xūyào duō cháng shíjiān?", ru:"Сколько времени займёт?", who:"s", speaker:"🌙 Сэйлор Мун" },
+      { img:"IMG_7472", zh:"不堵车的话，二十分钟。", py:"Bù dǔchē de huà, èrshí fēnzhōng.", ru:"Без пробок — 20 минут.", who:"w", speaker:"🚕 Водитель" },
+      { img:"IMG_7473", zh:"到了，一共三十块。", py:"Dào le, yígòng sānshí kuài.", ru:"Приехали, итого 30 юаней.", who:"w", speaker:"🚕 Водитель" },
+      { img:"IMG_7474", zh:"扫码支付可以吗？——可以，谢谢！", py:"Sǎomǎ zhīfù kěyǐ ma? —— Kěyǐ, xièxie!", ru:"Можно по QR? — Да, спасибо!", who:"m", speaker:"🗣️ Диалог" },
     ],
     vocab: [
-      { h:"师傅",   p:"shīfu",       r:"водитель (вежливое)" },
-      { h:"火车站", p:"huǒchēzhàn",  r:"железнодорожный вокзал" },
-      { h:"上车",   p:"shàng chē",   r:"садиться в машину" },
-      { h:"安全带", p:"ānquán dài",  r:"ремень безопасности" },
-      { h:"堵车",   p:"dǔchē",       r:"пробка на дороге" },
-      { h:"分钟",   p:"fēnzhōng",    r:"минута" },
-      { h:"扫码",   p:"sǎomǎ",       r:"сканировать QR-код" },
-      { h:"支付",   p:"zhīfù",       r:"оплатить" },
-      { h:"乘坐",   p:"chéngzuò",    r:"ехать (на транспорте)" },
+      { h:"师傅", p:"shīfu", r:"водитель (вежл.)" },
+      { h:"火车站", p:"huǒchēzhàn", r:"вокзал" },
+      { h:"上车", p:"shàng chē", r:"садиться" },
+      { h:"堵车", p:"dǔchē", r:"пробка" },
+      { h:"分钟", p:"fēnzhōng", r:"минута" },
+      { h:"扫码", p:"sǎomǎ", r:"сканировать QR" }
     ]
   },
 
-  // ── МАГАЗИН ───────────────────────────────────────────
-  // Файлы: 7482, 7483, 7484, 7485, 7486, 7487
   shop: {
     panels: [
-      { img:"IMG_7482", zh:"欢迎光临！随便看看，有喜欢的可以试穿。",
-        py:"Huānyíng guānglín! Suíbiàn kànkan, yǒu xǐhuan de kěyǐ shìchuān.",
-        ru:"Добро пожаловать! Смотрите свободно, можно примерить.", who:"w",
-        speaker:"👩💼 Продавец" },
-
-      { img:"IMG_7483", zh:"这件粉色的多少钱？",
-        py:"Zhè jiàn fěnsè de duōshao qián?",
-        ru:"Сколько стоит это розовое?", who:"s",
-        speaker:"🌙 Сэйлор Мун" },
-
-      { img:"IMG_7484", zh:"这件两百块，现在有活动，可以打八折。",
-        py:"Zhè jiàn liǎng bǎi kuài, xiànzài yǒu huódòng, kěyǐ dǎ bā zhé.",
-        ru:"Это 200 юаней, сейчас акция — скидка 20%.", who:"w",
-        speaker:"👩‍💼 Продавец" },
-
-      { img:"IMG_7485", zh:"哇，大小正好！我太喜欢了！",
-        py:"Wa, dàxiǎo zhènghǎo! Wǒ tài xǐhuan le!",
-        ru:"Вау, размер идеально! Мне так нравится!", who:"s",
-        speaker:"🌙 Сэйлор Мун" },
-
-      { img:"IMG_7486", zh:"我要买这件！用手机支付可以吗？",
-        py:"Wǒ yào mǎi zhè jiàn! Yòng shǒujī zhīfù kěyǐ ma?",
-        ru:"Беру это! Можно оплатить телефоном?", who:"s",
-        speaker:"🌙 Сэйлор Мун" },
-
-      { img:"IMG_7487", zh:"再见！欢迎下次再来！——下次还来！",
-        py:"Zàijiàn! Huānyíng xià cì zài lái! —— Xià cì hái lái!",
-        ru:"До свидания! Приходите ещё! — Обязательно приду! 🛍️", who:"m",
-        speaker:"🗣️ Диалог" },
+      { img:"IMG_7475", zh:"欢迎光临！随便看看。", py:"Huānyíng guānglín! Suíbiàn kànkan.", ru:"Добро пожаловать! Смотрите.", who:"w", speaker:"👩💼 Продавец" },
+      { img:"IMG_7476", zh:"这件衣服多少钱？", py:"Zhè jiàn yīfu duōshao qián?", ru:"Сколько стоит?", who:"s", speaker:" Сэйлор Мун" },
+      { img:"IMG_7477", zh:"这件两百块，可以试穿。", py:"Zhè jiàn liǎng bǎi kuài, kěyǐ shìchuān.", ru:"200 юаней, можно примерить.", who:"w", speaker:"‍💼 Продавец" },
+      { img:"IMG_7478", zh:"哇，大小正好！我很喜欢。", py:"Wa, dàxiǎo zhènghǎo! Wǒ hěn xǐhuan.", ru:"Вау, размер идеален! Нравится!", who:"s", speaker:"🌙 Сэйлор Мун" },
+      { img:"IMG_7479", zh:"我要买这件。能便宜点吗？", py:"Wǒ yào mǎi zhè jiàn. Néng piányi diǎn ma?", ru:"Беру. Можно дешевле?", who:"s", speaker:"🌙 Сэйлор Мун" },
+      { img:"IMG_7480", zh:"给你打个折，一百八十块。", py:"Gěi n dǎ gè zhé, yì bǎi bāshí kuài.", ru:"Скидка, 180 юаней.", who:"w", speaker:"‍💼 Продавец" },
     ],
     vocab: [
-      { h:"随便",   p:"suíbiàn",    r:"свободно / как угодно" },
-      { h:"试穿",   p:"shìchuān",   r:"примерить (одежду)" },
-      { h:"粉色",   p:"fěnsè",      r:"розовый цвет" },
-      { h:"多少钱", p:"duōshao qián",r:"сколько стоит" },
-      { h:"活动",   p:"huódòng",    r:"акция / мероприятие" },
-      { h:"打折",   p:"dǎ zhé",     r:"делать скидку" },
-      { h:"八折",   p:"bā zhé",     r:"скидка 20% (80% от цены)" },
-      { h:"大小",   p:"dàxiǎo",     r:"размер" },
-      { h:"手机",   p:"shǒujī",     r:"мобильный телефон" },
-      { h:"支付",   p:"zhīfù",      r:"оплатить" },
+      { h:"随便", p:"suíbiàn", r:"свободно" },
+      { h:"衣服", p:"yīfu", r:"одежда" },
+      { h:"试穿", p:"shìchuān", r:"примерить" },
+      { h:"大小", p:"dàxiǎo", r:"размер" },
+      { h:"便宜", p:"piányi", r:"дешевле" },
+      { h:"打折", p:"dǎ zhé", r:"скидка" }
+    ]
+  },
+
+  bubbletea: {
+    panels: [
+      { img:"IMG_7489", zh:"你好！我要一杯珍珠奶茶。", py:"Nǐ hǎo! Wǒ yào yì bēi zhēnzhū nǎichá.", ru:"Здравствуйте! Чашку бабл-ти.", who:"s", speaker:" Сэйлор Мун" },
+      { img:"IMG_7490", zh:"要什么口味的？我们有芒果、芋头、抹茶。", py:"Yào shénme kǒuwèi de? Wǒmen yǒu mángguǒ, yùtou, mǒchá.", ru:"Какой вкус? Манго, таро, матча.", who:"w", speaker:"🧑‍🍳 Бариста" },
+      { img:"IMG_7491", zh:"我要草莓抹茶！加珍珠和布丁。", py:"Wǒ yào cǎoméi mǒchá! Jiā zhēnzhū hé bùdīng.", ru:"Клубничную матчу! С шариками и пудингом.", who:"s", speaker:"🌙 Сэйлор Мун" },
+      { img:"IMG_7492", zh:"好的！要热的还是冰的？", py:"Hǎo de! Yào rè de háishì bīng de?", ru:"Хорошо! Горячий или холодный?", who:"w", speaker:"‍🍳 Бариста" },
+      { img:"IMG_7493", zh:"冰的，少糖，谢谢！", py:"Bīng de, shǎo táng, xièxie!", ru:"Холодный, мало сахара, спасибо!", who:"s", speaker:"🌙 Сэйлор Мун" },
+      { img:"IMG_7494", zh:"一共二十八块。扫码支付。", py:"Yígòng èrshíbā kuài. Sǎom zhīfù.", ru:"Итого 28 юаней. Оплата по QR.", who:"w", speaker:"🧑‍ Бариста" },
+      { img:"IMG_7495", zh:"好了！这是您的草莓抹茶奶茶。", py:"Hǎo le! Zhè shì nín de cǎoméi mǒchá nǎichá.", ru:"Готово! Вот ваш клубничный матча.", who:"w", speaker:"🧑‍🍳 Бариста" },
+      { img:"IMG_7496", zh:"哇，太好喝了！珍珠很有嚼劲。", py:"Wa, tài hǎo hē le! Zhēnzhū hěn yǒu jiáojìn.", ru:"Вау, вкусно! Шарики упругие.", who:"s", speaker:"🌙 Сэйлор Мун" },
+      { img:"IMG_7497", zh:"我们有积分卡。买十杯送一杯。", py:"Wǒmen yǒu jīfēn kǎ. Mǎi shí bēi sòng yì bēi.", ru:"Есть карта лояльности. 10+1 бесплатно.", who:"w", speaker:"🧑‍🍳 Бариста" },
+      { img:"IMG_7498", zh:"太好了！下次还来！再见！", py:"Tài hǎo le! Xià cì hái lái! Zàijiàn!", ru:"Отлично! Приду ещё! Пока!", who:"s", speaker:" Сэйлор Мун" },
+    ],
+    vocab: [
+      { h:"珍珠奶茶", p:"zhēnzhū nǎichá", r:"бабл-ти (чай с шариками)" },
+      { h:"口味", p:"kǒuwèi", r:"вкус" },
+      { h:"草莓", p:"cǎoméi", r:"клубника" },
+      { h:"抹茶", p:"mchá", r:"матча (зелёный чай)" },
+      { h:"珍珠", p:"zhēnzhū", r:"тапиока (шарики)" },
+      { h:"布丁", p:"bùdīng", r:"пудинг" },
+      { h:"少糖", p:"shǎo táng", r:"мало сахара" },
+      { h:"积分卡", p:"jīfēn kǎ", r:"карта лояльности" }
+    ]
+  },
+
+  hotel: {
+    panels: [
+      { img:"IMG_7499", zh:"你好！我有预订。", py:"Nǐ hǎo! Wǒ yǒu yùdìng.", ru:"Здравствуйте! У меня бронь.", who:"s", speaker:"🌙 Сэйлор Мун" },
+      { img:"IMG_7500", zh:"请问您的名字？", py:"Qǐngwèn nín de míngzi?", ru:"Как вас зовут?", who:"w", speaker:"👨‍💼 Администратор" },
+      { img:"IMG_7501", zh:"月野兔。这是我的护照。", py:"Yuèyě Tù. Zhè shì wǒ de hùzhào.", ru:"Усаги Цукино. Вот паспорт.", who:"s", speaker:" Сэйлор Мун" },
+      { img:"IMG_7502", zh:"好的，您预订了豪华大床房，三晚。", py:"Hǎo de, nín yùdìng le háohuá dàchuáng fáng, sān wǎn.", ru:"Люкс с кроватью king-size, 3 ночи.", who:"w", speaker:"👨‍💼 Администратор" },
+      { img:"IMG_7503", zh:"早餐包括吗？", py:"Zǎocān bāokuò ma?", ru:"Завтрак включён?", who:"s", speaker:" Сэйлор Мун" },
+      { img:"IMG_7504", zh:"包括，早上七点到十点。", py:"Bāokuò, zǎoshang qī diǎn dào shí diǎn.", ru:"Да, с 7 до 10 утра.", who:"w", speaker:"👨‍💼 Администратор" },
+      { img:"IMG_7505", zh:"这是您的房卡，十二楼，电梯在那边。", py:"Zhè shì nín de fáng kǎ, shí'èr lóu, diàntī zài nàbian.", ru:"Вот ключ, 12 этаж, лифт там.", who:"w", speaker:"👨‍💼 Администратор" },
+      { img:"IMG_7506", zh:"哇，房间真大！风景真好！", py:"Wa, fángjiān zhēn dà! Fēngjǐng zhēn hǎo!", ru:"Вау, номер большой! Вид отличный!", who:"s", speaker:"🌙 Сэйлор Мун" },
+      { img:"IMG_7507", zh:"客房服务，我要一份早餐。", py:"Kèfáng fúwù, wǒ yào yí fèn zǎocān.", ru:"Room service, хочу завтрак.", who:"s", speaker:"🌙 Сэйлор Мун" },
+      { img:"IMG_7508", zh:"退房，谢谢！住得很舒服。", py:"Tuìfáng, xièxie! Zhù de hěn shūfu.", ru:"Выезд, спасибо! Было комфортно.", who:"s", speaker:"🌙 Сэйлор Мун" },
+    ],
+    vocab: [
+      { h:"预订", p:"yùdìng", r:"бронировать" },
+      { h:"护照", p:"hùzhào", r:"паспорт" },
+      { h:"豪华", p:"háohuá", r:"роскошный" },
+      { h:"早餐", p:"zǎocān", r:"завтрак" },
+      { h:"房卡", p:"fáng kǎ", r:"ключ-карта" },
+      { h:"电梯", p:"diàntī", r:"лифт" },
+      { h:"客房服务", p:"kèfáng fúwù", r:"обслуживание номеров" },
+      { h:"退房", p:"tuìfáng", r:"выезд из отеля" }
+    ]
+  },
+
+  metro: {
+    panels: [
+      { img:"IMG_7509", zh:"请问，去天安门怎么坐地铁？", py:"Qǐngwèn, qù Tiān'ānmén zěnme zuò dìtiě?", ru:"Как доехать до Тяньаньмэнь?", who:"s", speaker:"🌙 Сэйлор Мун" },
+      { img:"IMG_7510", zh:"坐一号线，在五站后下车。", py:"Zuò yī hàoxiàn, zài wǔ zhàn hòu xià chē.", ru:"Линия 1, через 5 станций.", who:"w", speaker:"👨‍💼 Сотрудник" },
+      { img:"IMG_7511", zh:"我要买一张地铁票。", py:"Wǒ yào mǎi yì zhāng dìtiě piào.", ru:"Хочу купить билет.", who:"s", speaker:"🌙 Сэйлор Мун" },
+      { img:"IMG_7512", zh:"单程还是往返？", py:"Dānchéng háishì wǎngfǎn?", ru:"В одну сторону или туда-обратно?", who:"w", speaker:" Автомат" },
+      { img:"IMG_7513", zh:"单程，谢谢。", py:"Dānchéng, xièxie.", ru:"В одну сторону, спасибо.", who:"s", speaker:"🌙 Сэйлор Мун" },
+      { img:"IMG_7514", zh:"请刷卡进站。", py:"Qǐng shuā kǎ jìn zhàn.", ru:"Приложите карту ко входу.", who:"w", speaker:"🤖 Турникет" },
+      { img:"IMG_7515", zh:"小心站台间隙。", py:"Xiǎoxīn zhàntái jiànxì.", ru:"Осторожно, зазор между платформой.", who:"w", speaker:" Объявление" },
+      { img:"IMG_7516", zh:"下一站，王府井。", py:"Xià yí zhàn, Wángfǔjǐng.", ru:"Следующая станция — Ванфуцзин.", who:"w", speaker:" Объявление" },
+      { img:"IMG_7517", zh:"到了！这就是天安门东站。", py:"Dào le! Zhè jiùshì Tiān'ānmén Dōng zhàn.", ru:"Приехали! Это Тяньаньмэнь Восток.", who:"s", speaker:"🌙 Сэйлор Мун" },
+      { img:"IMG_7518", zh:"地铁真方便！下次还坐。", py:"Dìtiě zhēn fāngbiàn! Xià cì hái zuò.", ru:"Метро удобно! Ещё поеду.", who:"s", speaker:"🌙 Сэйлор Мун" },
+    ],
+    vocab: [
+      { h:"地铁", p:"dìtiě", r:"метро" },
+      { h:"怎么坐", p:"zěnme zuò", r:"как доехать" },
+      { h:"号线", p:"hàoxiàn", r:"линия (метро)" },
+      { h:"下车", p:"xià chē", r:"выйти (из транспорта)" },
+      { h:"票", p:"piào", r:"билет" },
+      { h:"单程", p:"dānchéng", r:"в одну сторону" },
+      { h:"刷卡", p:"shuā kǎ", r:"приложить карту" },
+      { h:"站台", p:"zhàntái", r:"платформа" },
+      { h:"方便", p:"fāngbiàn", r:"удобно" }
     ]
   }
-
-}; // end SCENES
-
+};
 
 /* =============================================================
-   ГОЛОСА
+   ГОЛОСА И ОЗВУЧКА (ЗАМЕДЛЕННАЯ)
 ============================================================= */
 let zhVoice = null;
 function loadVoices() {
@@ -519,10 +515,6 @@ function loadVoices() {
 speechSynthesis.onvoiceschanged = loadVoices;
 loadVoices();
 
-
-/* =============================================================
-   TOAST
-============================================================= */
 function showToast(msg) {
   const t = document.getElementById("toast");
   t.textContent = msg;
@@ -530,21 +522,19 @@ function showToast(msg) {
   setTimeout(() => t.classList.remove("show"), 2600);
 }
 
-
 /* =============================================================
    РЕНДЕР СЦЕНЫ
 ============================================================= */
 function renderScene(key) {
-  const data      = SCENES[key];
+  const data = SCENES[key];
   const container = document.getElementById(`panels-${key}`);
-  const vocabTbl  = document.getElementById(`vocab-${key}`);
+  const vocabTbl = document.getElementById(`vocab-${key}`);
 
-  // ── Панели ──
   let html = "";
   data.panels.forEach((p, i) => {
-    const bubbleClass  = p.who === "w" ? "waiter" : p.who === "s" ? "sailor" : "mix-bub";
-    const speakerClass = p.who === "w" ? "w"      : p.who === "s" ? "s"      : "m";
-    const imgSrc       = `img/${p.img}.png`;
+    const bubbleClass = p.who === "w" ? "waiter" : p.who === "s" ? "sailor" : "mix-bub";
+    const speakerClass = p.who === "w" ? "w" : p.who === "s" ? "s" : "m";
+    const imgSrc = `img/${p.img}.png`;
 
     html += `
     <div class="panel" id="${key}-p${i}">
@@ -553,19 +543,15 @@ function renderScene(key) {
           <span class="panel-num-badge">${i+1}</span>
           ${p.speaker}
         </div>
-        <button class="speak-btn" id="${key}-btn${i}"
-                onclick="speakPanel('${key}',${i})" title="Озвучить">🔊</button>
+        <button class="speak-btn" id="${key}-btn${i}" onclick="speakPanel('${key}',${i})" title="Озвучить">🔊</button>
       </div>
-
       <div class="panel-img-wrap" id="${key}-wrap${i}">
-        <img class="panel-img" src="${imgSrc}" alt="Панель ${i+1}"
-             onerror="this.parentElement.classList.add('has-error')" />
+        <img class="panel-img" src="${imgSrc}" alt="Панель ${i+1}" onerror="this.parentElement.classList.add('has-error')" />
         <div class="img-error-msg">
           <div class="big">🖼️</div>
           <div><b>${p.img}.png</b> не найден<br><small>Проверь папку img/</small></div>
         </div>
       </div>
-
       <div class="dialogue">
         <div class="bubble ${bubbleClass}" id="${key}-bub${i}">
           <div class="speaker-tag ${speakerClass}">${p.speaker}</div>
@@ -582,10 +568,7 @@ function renderScene(key) {
   });
   container.innerHTML = html;
 
-  // ── Словарь ──
-  let vHtml = `<thead><tr>
-    <th>汉字 Hànzi</th><th>Пиньинь</th><th>Русский</th><th>🔊</th>
-  </tr></thead><tbody>`;
+  let vHtml = `<thead><tr><th>汉字 Hànzi</th><th>Пиньинь</th><th>Русский</th><th>🔊</th></tr></thead><tbody>`;
   data.vocab.forEach(v => {
     vHtml += `<tr>
       <td class="hanzi-cell">${v.h}</td>
@@ -598,48 +581,40 @@ function renderScene(key) {
   vocabTbl.innerHTML = vHtml;
 }
 
-
 /* =============================================================
    ВКЛАДКИ
 ============================================================= */
 function switchTab(key) {
   speechSynthesis.cancel();
   clearVisuals();
-
   document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
   document.getElementById(`btn-${key}`).classList.add("active");
-
   document.querySelectorAll(".tab-content").forEach(c => c.classList.remove("active"));
   document.getElementById(`tab-${key}`).classList.add("active");
-
-  // Сброс кнопки play
   resetPlayBtn(key);
 }
 
-
 /* =============================================================
-   ОЗВУЧКА СЛОВА
+   ОЗВУЧКА (ОЧЕНЬ МЕДЛЕННАЯ)
 ============================================================= */
 function speakWord(text) {
   speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(text);
-  u.lang = "zh-CN"; u.rate = 0.78; u.pitch = 1.1;
+  u.lang = "zh-CN";
+  u.rate = 0.60;  // ОЧЕНЬ МЕДЛЕННО для слов
+  u.pitch = 1.1;
   if (zhVoice) u.voice = zhVoice;
   speechSynthesis.speak(u);
 }
 
-
-/* =============================================================
-   ОЗВУЧКА ПАНЕЛИ
-============================================================= */
 function speakPanel(key, idx) {
   speechSynthesis.cancel();
   clearVisuals();
 
   const panelEl = document.getElementById(`${key}-p${idx}`);
-  const bubEl   = document.getElementById(`${key}-bub${idx}`);
-  const btnEl   = document.getElementById(`${key}-btn${idx}`);
-  const npEl    = document.getElementById(`${key}-np${idx}`);
+  const bubEl = document.getElementById(`${key}-bub${idx}`);
+  const btnEl = document.getElementById(`${key}-btn${idx}`);
+  const npEl = document.getElementById(`${key}-np${idx}`);
 
   panelEl.classList.add("active-panel");
   bubEl.classList.add("highlight");
@@ -649,8 +624,8 @@ function speakPanel(key, idx) {
 
   const p = SCENES[key].panels[idx];
   const u = new SpeechSynthesisUtterance(p.zh);
-  u.lang  = "zh-CN";
-  u.rate  = p.who === "s" ? 0.88 : 0.80;
+  u.lang = "zh-CN";
+  u.rate = 0.65;  // МЕДЛЕННО для обучения (вместо 0.8-0.85)
   u.pitch = p.who === "s" ? 1.35 : 0.88;
   if (zhVoice) u.voice = zhVoice;
 
@@ -662,7 +637,6 @@ function speakPanel(key, idx) {
   };
   speechSynthesis.speak(u);
 }
-
 
 /* =============================================================
    ВОСПРОИЗВЕСТИ ВСЮ СЦЕНУ
@@ -687,9 +661,9 @@ function playAll(key) {
     }
 
     const panelEl = document.getElementById(`${key}-p${idx}`);
-    const bubEl   = document.getElementById(`${key}-bub${idx}`);
-    const btnEl   = document.getElementById(`${key}-btn${idx}`);
-    const npEl    = document.getElementById(`${key}-np${idx}`);
+    const bubEl = document.getElementById(`${key}-bub${idx}`);
+    const btnEl = document.getElementById(`${key}-btn${idx}`);
+    const npEl = document.getElementById(`${key}-np${idx}`);
 
     panelEl.classList.add("active-panel");
     bubEl.classList.add("highlight");
@@ -699,8 +673,8 @@ function playAll(key) {
 
     const p = panels[idx];
     const u = new SpeechSynthesisUtterance(p.zh);
-    u.lang  = "zh-CN";
-    u.rate  = p.who === "s" ? 0.88 : 0.80;
+    u.lang = "zh-CN";
+    u.rate = 0.65;  // МЕДЛЕННО для лучшего понимания
     u.pitch = p.who === "s" ? 1.35 : 0.88;
     if (zhVoice) u.voice = zhVoice;
 
@@ -710,11 +684,10 @@ function playAll(key) {
       btnEl.classList.remove("speaking");
       npEl.classList.remove("visible");
       idx++;
-      setTimeout(next, 450);
+      setTimeout(next, 600);  // Пауза побольше между фразами
     };
     speechSynthesis.speak(u);
   }
-
   next();
 }
 
@@ -728,18 +701,17 @@ function stopScene(key) {
 function resetPlayBtn(key) {
   const btn = document.getElementById(`playBtn-${key}`);
   if (btn) {
-    btn.textContent = "🔊 Воспроизвести всё";
+    btn.textContent = " Воспроизвести всё";
     btn.classList.remove("playing");
   }
 }
 
 function clearVisuals() {
-  document.querySelectorAll(".panel").forEach(p          => p.classList.remove("active-panel"));
-  document.querySelectorAll(".bubble").forEach(b         => b.classList.remove("highlight"));
-  document.querySelectorAll(".speak-btn").forEach(b      => b.classList.remove("speaking"));
-  document.querySelectorAll(".now-playing-bar").forEach(n=> n.classList.remove("visible"));
+  document.querySelectorAll(".panel").forEach(p => p.classList.remove("active-panel"));
+  document.querySelectorAll(".bubble").forEach(b => b.classList.remove("highlight"));
+  document.querySelectorAll(".speak-btn").forEach(b => b.classList.remove("speaking"));
+  document.querySelectorAll(".now-playing-bar").forEach(n => n.classList.remove("visible"));
 }
-
 
 /* =============================================================
    ИНИЦИАЛИЗАЦИЯ
@@ -748,11 +720,14 @@ window.addEventListener("load", () => {
   renderScene("restaurant");
   renderScene("taxi");
   renderScene("shop");
+  renderScene("bubbletea");
+  renderScene("hotel");
+  renderScene("metro");
 
   if (!("speechSynthesis" in window)) {
-    showToast("⚠️ Браузер не поддерживает озвучку — используй Chrome!");
+    showToast("⚠️ Используйте Chrome для озвучки!");
   } else {
-    showToast("🌙 Нажми 🔊 чтобы услышать китайский!");
+    showToast("🌙 Крупный текст · Медленная озвучка · Удобно учить!");
   }
 });
 </script>
