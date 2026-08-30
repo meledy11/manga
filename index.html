@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🌙 Sailor Moon — 在餐厅 | В ресторане</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&family=Comfortaa:wght@400;700&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: linear-gradient(180deg, #fff0f5 0%, #ffe4ec 50%, #ffd6e0 100%);
+      font-family: 'Comfortaa', 'Noto Sans SC', sans-serif;
+      min-height: 100vh;
+      padding: 20px 10px;
+    }
+
+    .manga-container {
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* ===== ЗАГОЛОВОК ===== */
+    .title-card {
+      background: linear-gradient(135deg, #ff6b9d, #c44dff, #6b9dff);
+      border-radius: 20px;
+      padding: 30px 20px;
+      text-align: center;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 32px rgba(196, 77, 255, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    .title-card::before {
+      content: '🌙';
+      position: absolute;
+      top: 10px; left: 15px;
+      font-size: 28px;
+      animation: float 3s ease-in-out infinite;
+    }
+    .title-card::after {
+      content: '✨';
+      position: absolute;
+      top: 10px; right: 15px;
+      font-size: 24px;
+      animation: float 3s ease-in-out infinite 1.5s;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .title-card h1 {
+      color: white;
+      font-size: 22px;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+      margin-bottom: 8px;
+    }
+    .title-card p {
+      color: rgba(255,255,255,0.9);
+      font-size: 14px;
+    }
+
+    /* ===== ПАНЕЛЬ ===== */
+    .panel {
+      background: white;
+      border-radius: 16px;
+      margin-bottom: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(255, 107, 157, 0.15);
+      border: 2px solid #ffd6e0;
+      transition: transform 0.2s;
+    }
+    .panel:hover {
+      transform: scale(1.01);
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px 8px;
+    }
+    .panel-number {
+      background: linear-gradient(135deg, #ff6b9d, #c44dff);
+      color: white;
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700;
+      flex-shrink: 0;
+    }
+    .panel-scene {
+      font-size: 12px;
+      color: #c44dff;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* ===== ИЛЛЮСТРАЦИЯ (эмодзи-сцена) ===== */
+    .panel-illustration {
+      background: linear-gradient(135deg, #fff8f0, #fff0f5);
+      padding: 20px;
+      text-align: center;
+      font-size: 48px;
+      line-height: 1.4;
+      border-top: 1px dashed #ffd6e0;
+      border-bottom: 1px dashed #ffd6e0;
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    /* ===== ДИАЛОГ ===== */
+    .dialogue {
+      padding: 14px 16px;
+    }
+
+    .speech-bubble {
+      background: linear-gradient(135deg, #fff5f8, #fff);
+      border: 2px solid #ffb3cc;
+      border-radius: 16px;
+      padding: 12px 14px;
+      margin-bottom: 10px;
+      position: relative;
+    }
+    .speech-bubble.waiter {
+      background: linear-gradient(135deg, #f0f8ff, #fff);
+      border-color: #99ccff;
+    }
+    .speech-bubble.sailor {
+      background: linear-gradient(135deg, #fff5f8, #fff);
+      border-color: #ffb3cc;
+    }
+
+    .speaker {
+      font-size: 11px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .speaker.waiter { color: #4488cc; }
+    .speaker.sailor { color: #cc4488; }
+
+    .chinese {
+      font-family: 'Noto Sans SC', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 4px;
+      line-height: 1.5;
+    }
+    .pinyin {
+      font-size: 12px;
+      color: #999;
+      font-style: italic;
+      margin-bottom: 6px;
+    }
+    .russian {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.4;
+      padding-left: 10px;
+      border-left: 3px solid #ffd6e0;
+    }
+    .speech-bubble.waiter .russian {
+      border-left-color: #99ccff;
+    }
+
+    /* ===== СЛОВАРЬ ===== */
+    .vocab-section {
+      background: white;
+      border-radius: 16px;
+      padding: 20px 16px;
+      margin-top: 10px;
+      box-shadow: 0 4px 20px rgba(255, 107, 157, 0.15);
+      border: 2px solid #ffd6e0;
+    }
+    .vocab-title {
+      text-align: center;
+      font-size: 16px;
+      font-weight: 700;
+      color: #c44dff;
+      margin-bottom: 14px;
+    }
+    .vocab-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .vocab-table th {
+      background: linear-gradient(135deg, #ff6b9d, #c44dff);
+      color: white;
+      padding: 8px 10px;
+      font-size: 12px;
+      text-align: left;
+    }
+    .vocab-table th:first-child { border-radius: 8px 0 0 0; }
+    .vocab-table th:last-child { border-radius: 0 8px 0 0; }
+    .vocab-table td {
+      padding: 8px 10px;
+      font-size: 13px;
+      border-bottom: 1px solid #ffe4ec;
+      color: #555;
+    }
+    .vocab-table tr:nth-child(even) td {
+      background: #fff8fa;
+    }
+    .vocab-table .hanzi {
+      font-family: 'Noto Sans SC', sans-serif;
+      font-weight: 700;
+      color: #333;
+      font-size: 15px;
+    }
+
+    /* ===== ФУТЕР ===== */
+    .footer {
+      text-align: center;
+      padding: 20px;
+      color: #cc88aa;
+      font-size: 12px;
+    }
+    .footer .moon { font-size: 24px; display: block; margin-bottom: 6px; }
+
+    /* ===== АНИМАЦИЯ ПОЯВЛЕНИЯ ===== */
+    .panel, .vocab-section, .title-card {
+      animation: slideUp 0.6s ease-out both;
+    }
+    .panel:nth-child(2) { animation-delay: 0.1s; }
+    .panel:nth-child(3) { animation-delay: 0.2s; }
+    .panel:nth-child(4) { animation-delay: 0.3s; }
+    .panel:nth-child(5) { animation-delay: 0.4s; }
+    .panel:nth-child(6) { animation-delay: 0.5s; }
+    .panel:nth-child(7) { animation-delay: 0.6s; }
+    .panel:nth-child(8) { animation-delay: 0.7s; }
+    .panel:nth-child(9) { animation-delay: 0.8s; }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="manga-container">
+
+  <!-- ЗАГОЛОВОК -->
+  <div class="title-card">
+    <h1>🌙 美少女战士在餐厅</h1>
+    <p>Sailor Moon в китайском ресторане<br>月野うさぎ ・ 中国語レストラン</p>
+  </div>
+
+  <!-- ПАНЕЛЬ 1 -->
+  <div class="panel">
+    <div class="panel-header">
+      <div class="panel-number">1</div>
+      <div class="panel-scene">🚪 Приветствие у входа</div>
+    </div>
+    <div class="panel-illustration">🧑‍🍳  🌙</div>
+    <div class="dialogue">
+      <div class="speech-bubble waiter">
+        <div class="speaker waiter">🧑‍ Официант</div>
+        <div class="chinese">你好，欢迎光临！请问几位？</div>
+        <div class="pinyin">Nǐ hǎo, huānyíng guānglín! Qǐngwèn jǐ wèi?</div>
+        <div class="russian">Здравствуйте, добро пожаловать! Сколько человек?</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ПАНЕЛЬ 2 -->
+  <div class="panel">
+    <div class="panel-header">
+      <div class="panel-number">2</div>
+      <div class="panel-scene">🪑 Сэйлор Мун садится за столик</div>
+    </div>
+    <div class="panel-illustration">🌙 ☝️ 😊</div>
+    <div class="dialogue">
+      <div class="speech-bubble sailor">
+        <div class="speaker sailor">🌙 Сэйлор Мун</div>
+        <div class="chinese">就我一个人。</div>
+        <div class="pinyin">Jiù wǒ yí gè rén.</div>
+        <div class="russian">Только я одна.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ПАНЕЛЬ 3 -->
+  <div class="panel">
+    <div class="panel-header">
+      <div class="panel-number">3</div>
+      <div class="panel-scene">📋 Официант подаёт меню</div>
+    </div>
+    <div class="panel-illustration">🧑‍🍳 📖 🌙</div>
+    <div class="dialogue">
+      <div class="speech-bubble waiter">
+        <div class="speaker waiter">🧑‍🍳 Официант</div>
+        <div class="chinese">这是菜单，需要我推荐吗？</div>
+        <div class="pinyin">Zhè shì càidān, xūyào wǒ tuījiàn ma?</div>
+        <div class="russian">Вот меню. Нужны ли рекомендации?</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ПАНЕЛЬ 4 -->
+  <div class="panel">
+    <div class="panel-header">
+      <div class="panel-number">4</div>
+      <div class="panel-scene">⭐ Рекомендация и заказ</div>
+    </div>
+    <div class="panel-illustration">🧑‍🍳 👉 🍜  🌙 </div>
+    <div class="dialogue">
+      <div class="speech-bubble waiter">
+        <div class="speaker waiter">🧑‍🍳 Официант</div>
+        <div class="chinese">招牌菜是红烧牛肉面，炸薯条也很受欢迎。</div>
+        <div class="pinyin">Zhāopái cài shì hóngshāo niúròu miàn, zhà shǔtiáo yě hěn shòu huānyíng.</div>
+        <div class="russian">Фирменное блюдо — лапша с тушёной говядиной. Картошка фри тоже очень популярна.</div>
+      </div>
+      <div class="speech-bubble sailor">
+        <div class="speaker sailor">🌙 Сэйлор Мун</div>
+        <div class="chinese">来一碗牛肉面，一份炸薯条！</div>
+        <div class="pinyin">Lái yì wǎn niúròu miàn, yí fèn zhà shǔtiáo!</div>
+        <div class="russian">Одну порцию лапши с говядиной и одну порцию картошки фри!</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ПАНЕЛЬ 5 -->
+  <div class="panel">
+    <div class="panel-header">
+      <div class="panel-number">5</div>
+      <div class="panel-scene">🧃 Заказ напитка</div>
+    </div>
+    <div class="panel-illustration">🌙  🍊 🧊 ✨</div>
+    <div class="dialogue">
+      <div class="speech-bubble sailor">
+        <div class="speaker sailor">🌙 Сэйлор Мун</div>
+        <div class="chinese">来一杯橙汁，要冰的！谢谢！</div>
+        <div class="pinyin">Lái yì bēi chéngzhī, yào bīng de! Xièxie!</div>
+        <div class="russian">Один стакан апельсинового сока со льдом! Спасибо! 🧡</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ПАНЕЛЬ 6 -->
+  <div class="panel">
+    <div class="panel-header">
+      <div class="panel-number">6</div>
+      <div class="panel-scene">🍽️ Подача блюда</div>
+    </div>
+    <div class="panel-illustration">🧑🍳  🍟 </div>
+    <div class="dialogue">
+      <div class="speech-bubble waiter">
+        <div class="speaker waiter">🧑‍🍳 Официант</div>
+        <div class="chinese">您的菜来了！请慢用。</div>
+        <div class="pinyin">Nín de cài lái le! Qǐng màn yòng.</div>
+        <div class="russian">Ваш заказ готов! Приятного аппетита.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ПАНЕЛЬ 7 -->
+  <div class="panel">
+    <div class="panel-header">
+      <div class="panel-number">7</div>
+      <div class="panel-scene">😋 Дегустация</div>
+    </div>
+    <div class="panel-illustration">🌙 🥢 🍜 ⭐✨⭐</div>
+    <div class="dialogue">
+      <div class="speech-bubble sailor">
+        <div class="speaker sailor">🌙 Сэйлор Мун</div>
+        <div class="chinese">嗯～太好吃了！</div>
+        <div class="pinyin">Ńg~ Tài hǎo chī le!</div>
+        <div class="russian">Ммм~ Как вкусно! ✨</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ПАНЕЛЬ 8 -->
+  <div class="panel">
+    <div class="panel-header">
+      <div class="panel-number">8</div>
+      <div class="panel-scene">💰 Оплата счёта</div>
+    </div>
+    <div class="panel-illustration">🌙 📱 💴 🧑‍🍳</div>
+    <div class="dialogue">
+      <div class="speech-bubble sailor">
+        <div class="speaker sailor">🌙 Сэйлор Мун</div>
+        <div class="chinese">服务员，买单！</div>
+        <div class="pinyin">Fúwùyuán, mǎidān!</div>
+        <div class="russian">Официант, счёт, пожалуйста!</div>
+      </div>
+      <div class="speech-bubble waiter">
+        <div class="speaker waiter">🧑‍🍳 Официант</div>
+        <div class="chinese">一共四十五元。</div>
+        <div class="pinyin">Yígòng sìshíwǔ yuán.</div>
+        <div class="russian">Итого 45 юаней.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ПАНЕЛЬ 9 -->
+  <div class="panel">
+    <div class="panel-header">
+      <div class="panel-number">9</div>
+      <div class="panel-scene">👋 Прощание</div>
+    </div>
+    <div class="panel-illustration">🌙  💕 🧑‍🍳 </div>
+    <div class="dialogue">
+      <div class="speech-bubble sailor">
+        <div class="speaker sailor">🌙 Сэйлор Мун</div>
+        <div class="chinese">再见！下次还来！</div>
+        <div class="pinyin">Zàijiàn! Xià cì hái lái!</div>
+        <div class="russian">До свидания! Приду ещё раз!</div>
+      </div>
+      <div class="speech-bubble waiter">
+        <div class="speaker waiter">🧑‍🍳 Официант</div>
+        <div class="chinese">欢迎下次再来！</div>
+        <div class="pinyin">Huānyíng xià cì zài lái!</div>
+        <div class="russian">Будем рады видеть вас снова! 💛</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- СЛОВАРЬ -->
+  <div class="vocab-section">
+    <div class="vocab-title">📚 Словарь — 词汇 Cíhuì</div>
+    <table class="vocab-table">
+      <thead>
+        <tr>
+          <th>汉字 Hànzi</th>
+          <th>Пиньинь</th>
+          <th>Русский</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="hanzi">你好</td><td>nǐ hǎo</td><td>здравствуйте</td></tr>
+        <tr><td class="hanzi">欢迎光临</td><td>huānyíng guānglín</td><td>добро пожаловать</td></tr>
+        <tr><td class="hanzi">几位</td><td>jǐ wèi</td><td>сколько человек</td></tr>
+        <tr><td class="hanzi">一个人</td><td>yí gè rén</td><td>один человек</td></tr>
+        <tr><td class="hanzi">菜单</td><td>càidān</td><td>меню</td></tr>
+        <tr><td class="hanzi">推荐</td><td>tuījiàn</td><td>рекомендовать</td></tr>
+        <tr><td class="hanzi">招牌菜</td><td>zhāopái cài</td><td>фирменное блюдо</td></tr>
+        <tr><td class="hanzi">红烧牛肉面</td><td>hóngshāo niúròu miàn</td><td>лапша с говядиной</td></tr>
+        <tr><td class="hanzi">炸薯条</td><td>zhà shǔtiáo</td><td>картошка фри</td></tr>
+        <tr><td class="hanzi">橙汁</td><td>chéngzhī</td><td>апельсиновый сок</td></tr>
+        <tr><td class="hanzi">冰的</td><td>bīng de</td><td>со льдом</td></tr>
+        <tr><td class="hanzi">请慢用</td><td>qǐng màn yòng</td><td>приятного аппетита</td></tr>
+        <tr><td class="hanzi">好吃</td><td>hǎo chī</td><td>вкусно</td></tr>
+        <tr><td class="hanzi">买单</td><td>mǎidān</td><td>оплатить счёт</td></tr>
+        <tr><td class="hanzi">元</td><td>yuán</td><td>юань</td></tr>
+        <tr><td class="hanzi">再见</td><td>zàijiàn</td><td>до свидания</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ФУТЕР -->
+  <div class="footer">
+    <span class="moon">🌙</span>
+    美少女战士 × 中国语レッスン<br>
+    Sailor Moon Chinese Lesson • 2025
+  </div>
+
+</div>
+
+</body>
+</html>
+
