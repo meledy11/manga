@@ -257,15 +257,17 @@
 </head>
 <body>
 
-<!-- ===== ВКЛАДКИ ===== -->
+<!-- ===== ВКЛАДКИ (9 штук!) ===== -->
 <div class="tabs-header">
   <button class="tab-btn active" data-tab="restaurant" onclick="switchTab('restaurant')">🍜 Ресторан</button>
   <button class="tab-btn" data-tab="taxi" onclick="switchTab('taxi')">🚕 Такси</button>
   <button class="tab-btn" data-tab="shop" onclick="switchTab('shop')">🛍️ Магазин</button>
-  <button class="tab-btn" data-tab="bubbletea" onclick="switchTab('bubbletea')"> Бабл-ти</button>
+  <button class="tab-btn" data-tab="bubbletea" onclick="switchTab('bubbletea')">🧋 Бабл-ти</button>
   <button class="tab-btn" data-tab="hotel" onclick="switchTab('hotel')">🏨 Отель</button>
   <button class="tab-btn" data-tab="metro" onclick="switchTab('metro')">🚇 Метро</button>
   <button class="tab-btn" data-tab="mcdonalds" onclick="switchTab('mcdonalds')">🍔 Макдональдс</button>
+  <button class="tab-btn" data-tab="airport" onclick="switchTab('airport')">✈️ Аэропорт</button>
+  <button class="tab-btn" data-tab="cinema" onclick="switchTab('cinema')">🎬 Кинотеатр</button>
 </div>
 
 <div class="manga-container">
@@ -273,14 +275,14 @@
   <!-- ВКЛАДКА 1 — РЕСТОРАН -->
   <div id="tab-restaurant" class="tab-content active">
     <div class="scene-title" style="background:linear-gradient(135deg,#ff6b9d,#c44dff,#6b9dff)">
-      <div class="emoji-bg"></div>
-      <h1> 在餐厅 — В ресторане</h1>
+      <div class="emoji-bg">🍜</div>
+      <h1>🌙 在餐厅 — В ресторане</h1>
       <p>Урок 1 · Заказ еды</p>
-      <button class="play-all-btn" id="playBtn-restaurant" onclick="playAll('restaurant')"> Озвучить весь диалог</button>
+      <button class="play-all-btn" id="playBtn-restaurant" onclick="playAll('restaurant')">🔊 Озвучить весь диалог</button>
     </div>
     <div id="panels-restaurant"></div>
     <div class="vocab-section">
-      <div class="vocab-title"> Словарь — 餐厅词汇</div>
+      <div class="vocab-title">📚 Словарь — 餐厅词汇</div>
       <table class="vocab-table" id="vocab-restaurant"></table>
     </div>
   </div>
@@ -360,7 +362,7 @@
     </div>
   </div>
 
-  <!-- ВКЛАДКА 7 — МАКДОНАЛЬДС (НОВАЯ!) -->
+  <!-- ВКЛАДКА 7 — МАКДОНАЛЬДС -->
   <div id="tab-mcdonalds" class="tab-content">
     <div class="scene-title" style="background:linear-gradient(135deg,#ff416c,#ff4b2b,#f7971e)">
       <div class="emoji-bg">🍔</div>
@@ -375,10 +377,40 @@
     </div>
   </div>
 
+  <!-- ВКЛАДКА 8 — АЭРОПОРТ (НОВАЯ!) -->
+  <div id="tab-airport" class="tab-content">
+    <div class="scene-title" style="background:linear-gradient(135deg,#2193b0,#6dd5ed,#a8edea)">
+      <div class="emoji-bg">✈️</div>
+      <h1>🌙 在机场 — В аэропорту</h1>
+      <p>Урок 8 · Регистрация на рейс</p>
+      <button class="play-all-btn" id="playBtn-airport" onclick="playAll('airport')">🔊 Озвучить весь диалог</button>
+    </div>
+    <div id="panels-airport"></div>
+    <div class="vocab-section">
+      <div class="vocab-title">📚 Словарь — 机场词汇</div>
+      <table class="vocab-table" id="vocab-airport"></table>
+    </div>
+  </div>
+
+  <!-- ВКЛАДКА 9 — КИНОТЕАТР (НОВАЯ!) -->
+  <div id="tab-cinema" class="tab-content">
+    <div class="scene-title" style="background:linear-gradient(135deg,#8E2DE2,#4A00E0,#c471ed)">
+      <div class="emoji-bg">🎬</div>
+      <h1>🌙 在电影院 — В кинотеатре</h1>
+      <p>Урок 9 · Поход в кино</p>
+      <button class="play-all-btn" id="playBtn-cinema" onclick="playAll('cinema')">🔊 Озвучить весь диалог</button>
+    </div>
+    <div id="panels-cinema"></div>
+    <div class="vocab-section">
+      <div class="vocab-title">📚 Словарь — 电影院词汇</div>
+      <table class="vocab-table" id="vocab-cinema"></table>
+    </div>
+  </div>
+
   <div class="footer">
     <span class="moon">🌙</span>
     Sailor Moon Chinese Learning · 2025<br>
-    <small>Крупный текст · Медленная озвучка · Удобно учить!</small>
+    <small>Крупный текст · Медленная озвучка · 9 уроков!</small>
   </div>
 
 </div>
@@ -387,7 +419,7 @@
 
 <script>
 /* =============================================================
-   ДАННЫЕ ВСЕХ СЦЕН
+   ДАННЫЕ ВСЕХ 9 СЦЕН
 ============================================================= */
 const SCENES = {
 
@@ -401,7 +433,7 @@ const SCENES = {
       { img:"IMG_7464", zh:"来一杯橙汁，要冰的！谢谢！", py:"Lái yì bēi chéngzhī, yào bīng de! Xièxie!", ru:"Апельсиновый сок со льдом! Спасибо!", who:"s", speaker:"🌙 Сэйлор Мун" },
       { img:"IMG_7465", zh:"您的菜来了！请慢用。", py:"Nín de cài lái le! Qǐng màn yòng.", ru:"Ваш заказ готов! Приятного аппетита.", who:"w", speaker:"🧑‍🍳 Официант" },
       { img:"IMG_7466", zh:"嗯～太好吃了！", py:"Ńg~ Tài hǎo chī le!", ru:"Ммм~ Как вкусно!", who:"s", speaker:"🌙 Сэйлор Мун" },
-      { img:"IMG_7467", zh:"服务员，买单！——一共四十五元。", py:"Fúwùyuán, mǎidān! —— Yígòng sìshíwǔ yuán.", ru:"Счёт! — Итого 45 юаней.", who:"m", speaker:" Диалог" },
+      { img:"IMG_7467", zh:"服务员，买单！——一共四十五元。", py:"Fúwùyuán, mǎidān! —— Yígòng sìshíwǔ yuán.", ru:"Счёт! — Итого 45 юаней.", who:"m", speaker:"🗣️ Диалог" },
       { img:"IMG_7468", zh:"再见！下次还来！——欢迎下次再来！", py:"Zàijiàn! Xià cì hái lái! —— Huānyíng xià cì zài lái!", ru:"До свидания! — Приходите ещё!", who:"m", speaker:"🗣️ Диалог" },
     ],
     vocab: [
@@ -460,10 +492,10 @@ const SCENES = {
       { img:"IMG_7491", zh:"我要草莓抹茶！加珍珠和布丁。", py:"Wǒ yào cǎoméi mǒchá! Jiā zhēnzhū hé bùdīng.", ru:"Клубничную матчу! С шариками и пудингом.", who:"s", speaker:"🌙 Сэйлор Мун" },
       { img:"IMG_7492", zh:"好的！要热的还是冰的？", py:"Hǎo de! Yào rè de háishì bīng de?", ru:"Хорошо! Горячий или холодный?", who:"w", speaker:"🧑‍🍳 Бариста" },
       { img:"IMG_7493", zh:"冰的，少糖，谢谢！", py:"Bīng de, shǎo táng, xièxie!", ru:"Холодный, мало сахара, спасибо!", who:"s", speaker:"🌙 Сэйлор Мун" },
-      { img:"IMG_7494", zh:"一共二十八块。扫码支付。", py:"Yígòng èrshíbā kuài. Sǎomǎ zhīfù.", ru:"Итого 28 юаней. Оплата по QR.", who:"w", speaker:"🧑‍🍳 Бариста" },
-      { img:"IMG_7495", zh:"好了！这是您的草莓抹茶奶茶。", py:"Hǎo le! Zhè shì nín de cǎoméi mǒchá nǎichá.", ru:"Готово! Вот ваш клубничный матча.", who:"w", speaker:"🧑‍🍳 Бариста" },
+      { img:"IMG_7494", zh:"一共二十八块。扫码支付。", py:"Yígòng èrshíbā kuài. Sǎomǎ zhīfù.", ru:"Итого 28 юаней. Оплата по QR.", who:"w", speaker:"🧑‍ Бариста" },
+      { img:"IMG_7495", zh:"好了！这是您的草莓抹茶奶茶。", py:"Hǎo le! Zhè shì nín de cǎoméi mǒchá nichá.", ru:"Готово! Вот ваш клубничный матча.", who:"w", speaker:"🧑‍🍳 Бариста" },
       { img:"IMG_7496", zh:"哇，太好喝了！珍珠很有嚼劲。", py:"Wa, tài hǎo hē le! Zhēnzhū hěn yǒu jiáojìn.", ru:"Вау, вкусно! Шарики упругие.", who:"s", speaker:"🌙 Сэйлор Мун" },
-      { img:"IMG_7497", zh:"我们有积分卡。买十杯送一杯。", py:"Wǒmen yǒu jīfēn kǎ. Mǎi shí bēi sòng yì bēi.", ru:"Есть карта лояльности. 10+1 бесплатно.", who:"w", speaker:"🧑‍ Бариста" },
+      { img:"IMG_7497", zh:"我们有积分卡。买十杯送一杯。", py:"Wǒmen yu jīfēn kǎ. Mǎi shí bēi sòng yì bēi.", ru:"Есть карта лояльности. 10+1 бесплатно.", who:"w", speaker:"🧑‍🍳 Бариста" },
       { img:"IMG_7498", zh:"太好了！下次还来！再见！", py:"Tài hǎo le! Xià cì hái lái! Zàijiàn!", ru:"Отлично! Приду ещё! Пока!", who:"s", speaker:"🌙 Сэйлор Мун" },
     ],
     vocab: [
@@ -485,7 +517,7 @@ const SCENES = {
       { img:"IMG_7501", zh:"月野兔。这是我的护照。", py:"Yuèyě Tù. Zhè shì wǒ de hùzhào.", ru:"Усаги Цукино. Вот паспорт.", who:"s", speaker:"🌙 Сэйлор Мун" },
       { img:"IMG_7502", zh:"好的，您预订了豪华大床房，三晚。", py:"Hǎo de, nín yùdìng le háohuá dàchuáng fáng, sān wǎn.", ru:"Люкс с кроватью king-size, 3 ночи.", who:"w", speaker:"👨‍💼 Администратор" },
       { img:"IMG_7503", zh:"早餐包括吗？", py:"Zǎocān bāokuò ma?", ru:"Завтрак включён?", who:"s", speaker:"🌙 Сэйлор Мун" },
-      { img:"IMG_7504", zh:"包括，早上七点到十点。", py:"Bāokuò, zǎoshang qī diǎn dào shí diǎn.", ru:"Да, с 7 до 10 утра.", who:"w", speaker:"👨‍ Администратор" },
+      { img:"IMG_7504", zh:"包括，早上七点到十点。", py:"Bāokuò, zǎoshang qī diǎn dào shí diǎn.", ru:"Да, с 7 до 10 утра.", who:"w", speaker:"👨‍💼 Администратор" },
       { img:"IMG_7505", zh:"这是您的房卡，十二楼，电梯在那边。", py:"Zhè shì nín de fáng kǎ, shí'èr lóu, diàntī zài nàbian.", ru:"Вот ключ, 12 этаж, лифт там.", who:"w", speaker:"👨‍ Администратор" },
       { img:"IMG_7506", zh:"哇，房间真大！风景真好！", py:"Wa, fángjiān zhēn dà! Fēngjǐng zhēn hǎo!", ru:"Вау, номер большой! Вид отличный!", who:"s", speaker:"🌙 Сэйлор Мун" },
       { img:"IMG_7507", zh:"客房服务，我要一份早餐。", py:"Kèfáng fúwù, wǒ yào yí fèn zǎocān.", ru:"Room service, хочу завтрак.", who:"s", speaker:"🌙 Сэйлор Мун" },
@@ -506,13 +538,13 @@ const SCENES = {
   metro: {
     panels: [
       { img:"IMG_7509", zh:"请问，去天安门怎么坐地铁？", py:"Qǐngwèn, qù Tiān'ānmén zěnme zuò dìtiě?", ru:"Как доехать до Тяньаньмэнь?", who:"s", speaker:"🌙 Сэйлор Мун" },
-      { img:"IMG_7510", zh:"坐一号线，在五站后下车。", py:"Zuò yī hàoxiàn, zài wǔ zhàn hòu xià chē.", ru:"Линия 1, через 5 станций.", who:"w", speaker:"👨‍ Сотрудник" },
+      { img:"IMG_7510", zh:"坐一号线，在五站后下车。", py:"Zuò yī hàoxiàn, zài wǔ zhàn hòu xià chē.", ru:"Линия 1, через 5 станций.", who:"w", speaker:"👨‍💼 Сотрудник" },
       { img:"IMG_7511", zh:"我要买一张地铁票。", py:"Wǒ yào mǎi yì zhāng dìtiě piào.", ru:"Хочу купить билет.", who:"s", speaker:"🌙 Сэйлор Мун" },
-      { img:"IMG_7512", zh:"单程还是往返？", py:"Dānchéng háishì wǎngfǎn?", ru:"В одну сторону или туда-обратно?", who:"w", speaker:" Автомат" },
+      { img:"IMG_7512", zh:"单程还是往返？", py:"Dānchéng háishì wǎngfǎn?", ru:"В одну сторону или туда-обратно?", who:"w", speaker:"🤖 Автомат" },
       { img:"IMG_7513", zh:"单程，谢谢。", py:"Dānchéng, xièxie.", ru:"В одну сторону, спасибо.", who:"s", speaker:"🌙 Сэйлор Мун" },
       { img:"IMG_7514", zh:"请刷卡进站。", py:"Qǐng shuā kǎ jìn zhàn.", ru:"Приложите карту ко входу.", who:"w", speaker:"🤖 Турникет" },
       { img:"IMG_7515", zh:"小心站台间隙。", py:"Xiǎoxīn zhàntái jiànxì.", ru:"Осторожно, зазор между платформой.", who:"w", speaker:"📢 Объявление" },
-      { img:"IMG_7516", zh:"下一站，王府井。", py:"Xià yí zhàn, Wángfǔjǐng.", ru:"Следующая станция — Ванфуцзин.", who:"w", speaker:" Объявление" },
+      { img:"IMG_7516", zh:"下一站，王府井。", py:"Xià yí zhàn, Wángfǔjǐng.", ru:"Следующая станция — Ванфуцзин.", who:"w", speaker:"📢 Объявление" },
       { img:"IMG_7517", zh:"到了！这就是天安门东站。", py:"Dào le! Zhè jiùshì Tiān'ānmén Dōng zhàn.", ru:"Приехали! Это Тяньаньмэнь Восток.", who:"s", speaker:"🌙 Сэйлор Мун" },
       { img:"IMG_7518", zh:"地铁真方便！下次还坐。", py:"Dìtiě zhēn fāngbiàn! Xià cì hái zuò.", ru:"Метро удобно! Ещё поеду.", who:"s", speaker:"🌙 Сэйлор Мун" },
     ],
@@ -529,7 +561,6 @@ const SCENES = {
     ]
   },
 
-  // ===== МАКДОНАЛЬДС (НОВАЯ СЦЕНА!) =====
   mcdonalds: {
     panels: [
       { img:"IMG_7521", zh:"你好！我要点餐。", py:"Nǐ hǎo! Wǒ yào diǎn cān.", ru:"Здравствуйте! Хочу сделать заказ.", who:"s", speaker:"🌙 Сэйлор Мун" },
@@ -556,6 +587,59 @@ const SCENES = {
       { h:"带走", p:"dàizǒu", r:"с собой" },
       { h:"在这里吃", p:"zài zhèlǐ chī", r:"есть здесь" },
       { h:"手机支付", p:"shǒujī zhīfù", r:"оплата телефоном" }
+    ]
+  },
+
+  // ===== АЭРОПОРТ (НОВАЯ СЦЕНА!) =====
+  airport: {
+    panels: [
+      { img:"IMG_7533", zh:"你好！我要办理登机手续。", py:"Nǐ hǎo! Wǒ yào bànlǐ dēngjī shǒuxù.", ru:"Здравствуйте! Хочу зарегистрироваться на рейс.", who:"s", speaker:"🌙 Сэйлор Мун" },
+      { img:"IMG_7534", zh:"请出示您的护照和机票。", py:"Qǐng chūshì nín de hùzhào hé jīpiào.", ru:"Покажите паспорт и билет.", who:"w", speaker:"👩‍✈️ Сотрудник" },
+      { img:"IMG_7535", zh:"给您。我的航班是几点起飞？", py:"Gěi nín. Wǒ de hángbān shì jǐ diǎn qǐfēi?", ru:"Вот. Во сколько вылет?", who:"s", speaker:"🌙 Сэйлор Мун" },
+      { img:"IMG_7536", zh:"下午两点半，A12号登机口。", py:"Xiàwǔ liǎng diǎn bàn, A shí'èr hào dēngjī kǒu.", ru:"В 14:30, гейт A12.", who:"w", speaker:"👩‍✈️ Сотрудник" },
+      { img:"IMG_7537", zh:"行李可以托运吗？", py:"Xíngli kěyǐ tuōyùn ma?", ru:"Багаж можно сдать?", who:"s", speaker:"🌙 Сэйлор Мун" },
+      { img:"IMG_7538", zh:"可以，请放在这里。", py:"Kěyǐ, qǐng fàng zài zhèlǐ.", ru:"Да, поставьте сюда.", who:"w", speaker:"👩‍✈️ Сотрудник" },
+      { img:"IMG_7539", zh:"安检在哪里？", py:"Ānjiǎn zài nǎlǐ?", ru:"Где контроль безопасности?", who:"s", speaker:"🌙 Сэйлор Мун" },
+      { img:"IMG_7540", zh:"往前走，右转就到了。", py:"Wǎng qián zǒu, yòu zhuǎn jiù dào le.", ru:"Прямо и направо.", who:"w", speaker:"👩‍️ Сотрудник" },
+      { img:"IMG_7541", zh:"谢谢！飞机上有餐食吗？", py:"Xièxie! Fēijī shàng yǒu cānshí ma?", ru:"Спасибо! Еда в самолёте есть?", who:"s", speaker:"🌙 Сэйлор Мун" },
+      { img:"IMG_7542", zh:"到了！中国，我来了！", py:"Dào le! Zhōngguó, wǒ lái le!", ru:"Прилетела! Китай, я здесь!", who:"s", speaker:"🌙 Сэйлор Мун" },
+    ],
+    vocab: [
+      { h:"登机手续", p:"dēngjī shǒuxù", r:"регистрация на рейс" },
+      { h:"护照", p:"hùzhào", r:"паспорт" },
+      { h:"机票", p:"jīpiào", r:"авиабилет" },
+      { h:"航班", p:"hángbān", r:"рейс" },
+      { h:"起飞", p:"qǐfēi", r:"взлетать" },
+      { h:"登机口", p:"dēngjī kǒu", r:"гейт / выход на посадку" },
+      { h:"托运", p:"tuōyùn", r:"сдать багаж" },
+      { h:"安检", p:"ānjiǎn", r:"контроль безопасности" },
+      { h:"餐食", p:"cānshí", r:"питание / еда" }
+    ]
+  },
+
+  // ===== КИНОТЕАТР (НОВАЯ СЦЕНА!) =====
+  cinema: {
+    panels: [
+      { img:"IMG_7543", zh:"你好！我要买电影票。", py:"Nǐ hǎo! Wǒ yào mǎi diànyǐng piào.", ru:"Здравствуйте! Хочу купить билет.", who:"s", speaker:"🌙 Сэйлор Мун" },
+      { img:"IMG_7544", zh:"看哪部电影？几点的场？", py:"Kàn nǎ bù diànyǐng? Jǐ diǎn de chǎng?", ru:"Какой фильм? На какой сеанс?", who:"w", speaker:"👩 Кассир" },
+      { img:"IMG_7545", zh:"七点半的那场，要两张票。", py:"Qī diǎn bàn de nà chǎng, yào liǎng zhāng piào.", ru:"На 19:30, два билета.", who:"s", speaker:"🌙 Сэйлор Мун" },
+      { img:"IMG_7546", zh:"要哪个座位？前排还是后排？", py:"Yào nǎge zuòwèi? Qiánpái háishì hòupái?", ru:"Какие места? Передние или задние?", who:"w", speaker:"👩 Кассир" },
+      { img:"IMG_7547", zh:"中间靠后的位置，谢谢。", py:"Zhōngjiān kào hòu de wèizhì, xièxie.", ru:"Посередине, ближе к задним рядам.", who:"s", speaker:"🌙 Сэйлор Мун" },
+      { img:"IMG_7548", zh:"一共八十块。要爆米花吗？", py:"Yígòng bāshí kuài. Yào bàomǐhuā ma?", ru:"Итого 80 юаней. Попкорн?", who:"w", speaker:"👩 Кассир" },
+      { img:"IMG_7549", zh:"来一份大份爆米花和一杯可乐！", py:"Lái yí fèn dà fèn bàomǐhuā hé yì bēi kělè!", ru:"Большой попкорн и колу!", who:"s", speaker:"🌙 Сэйлор Мун" },
+      { img:"IMG_7550", zh:"电影太好看了！我都哭了。", py:"Diànyǐng tài hǎo kàn le! Wǒ dōu kū le.", ru:"Фильм отличный! Я даже плакала.", who:"s", speaker:"🌙 Сэйлор Мун" },
+      { img:"IMG_7551", zh:"爆米花也好好吃！", py:"Bàomǐhuā yě hǎo hǎo chī!", ru:"И попкорн вкусный!", who:"s", speaker:"🌙 Сэйлор Мун" },
+      { img:"IMG_7552", zh:"下次还来看！再见！", py:"Xià cì hái lái kàn! Zàijiàn!", ru:"Приду ещё! Пока!", who:"s", speaker:"🌙 Сэйлор Мун" },
+    ],
+    vocab: [
+      { h:"电影票", p:"diànyǐng piào", r:"билет в кино" },
+      { h:"场", p:"chǎng", r:"сеанс" },
+      { h:"座位", p:"zuòwèi", r:"место / сиденье" },
+      { h:"前排", p:"qiánpái", r:"передний ряд" },
+      { h:"后排", p:"hòupái", r:"задний ряд" },
+      { h:"爆米花", p:"bàomǐhuā", r:"попкорн" },
+      { h:"好看", p:"hǎo kàn", r:"интересный (о фильме)" },
+      { h:"哭", p:"kū", r:"плакать" }
     ]
   }
 };
@@ -800,11 +884,13 @@ window.addEventListener("load", () => {
   renderScene("hotel");
   renderScene("metro");
   renderScene("mcdonalds");
+  renderScene("airport");
+  renderScene("cinema");
 
   if (!("speechSynthesis" in window)) {
     showToast("⚠️ Используйте Chrome для озвучки!");
   } else {
-    showToast("🌙 Крупный текст · Медленная озвучка · 7 уроков!");
+    showToast("🌙 Крупный текст · Медленная озвучка · 9 уроков!");
   }
 });
 </script>
