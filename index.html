@@ -16,417 +16,631 @@
       padding: 20px 10px;
     }
 
-    .manga-container {
-      max-width: 480px;
-      margin: 0 auto;
-    }
+    .manga-container { max-width: 500px; margin: 0 auto; }
 
     /* ===== ЗАГОЛОВОК ===== */
     .title-card {
       background: linear-gradient(135deg, #ff6b9d, #c44dff, #6b9dff);
-      border-radius: 20px;
-      padding: 30px 20px;
-      text-align: center;
-      margin-bottom: 20px;
-      box-shadow: 0 8px 32px rgba(196, 77, 255, 0.3);
-      position: relative;
-      overflow: hidden;
+      border-radius: 20px; padding: 30px 20px; text-align: center;
+      margin-bottom: 16px; box-shadow: 0 8px 32px rgba(196,77,255,0.3);
+      position: relative; overflow: hidden;
+      animation: slideUp 0.6s ease-out both;
     }
     .title-card::before {
-      content: '🌙';
-      position: absolute;
-      top: 10px; left: 15px;
-      font-size: 28px;
-      animation: float 3s ease-in-out infinite;
+      content: '🌙'; position: absolute; top: 10px; left: 15px;
+      font-size: 28px; animation: float 3s ease-in-out infinite;
     }
     .title-card::after {
-      content: '✨';
-      position: absolute;
-      top: 10px; right: 15px;
-      font-size: 24px;
-      animation: float 3s ease-in-out infinite 1.5s;
+      content: '✨'; position: absolute; top: 10px; right: 15px;
+      font-size: 24px; animation: float 3s ease-in-out infinite 1.5s;
     }
     @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-8px); }
     }
     .title-card h1 {
-      color: white;
-      font-size: 22px;
-      text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
-      margin-bottom: 8px;
+      color: white; font-size: 20px;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.2); margin-bottom: 6px;
     }
-    .title-card p {
-      color: rgba(255,255,255,0.9);
-      font-size: 14px;
+    .title-card .subtitle {
+      color: rgba(255,255,255,0.9); font-size: 13px; margin-bottom: 16px;
     }
+    .play-all-btn {
+      background: white; color: #c44dff; border: none;
+      padding: 12px 28px; border-radius: 30px;
+      font-size: 15px; font-weight: 700; cursor: pointer;
+      font-family: inherit; transition: all 0.2s;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    }
+    .play-all-btn:hover  { transform: scale(1.05); box-shadow: 0 6px 24px rgba(0,0,0,0.25); }
+    .play-all-btn:active { transform: scale(0.97); }
+    .play-all-btn.playing { background: #ffe4ec; color: #ff6b9d; }
+
+    /* ===== НАСТРОЙКА ФАЙЛОВ ===== */
+    .config-bar {
+      background: white; border-radius: 12px; padding: 14px 16px;
+      margin-bottom: 16px; border: 2px dashed #ffb3cc;
+      animation: slideUp 0.6s ease-out 0.02s both;
+    }
+    .config-bar > label {
+      font-size: 12px; color: #999; display: block; margin-bottom: 8px;
+    }
+    .config-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    .config-input {
+      flex: 1; min-width: 130px; padding: 8px 12px;
+      border: 2px solid #ffd6e0; border-radius: 8px;
+      font-family: inherit; font-size: 13px; color: #555;
+      outline: none; transition: border-color 0.2s;
+    }
+    .config-input:focus { border-color: #c44dff; }
+    .config-select {
+      padding: 8px 12px; border: 2px solid #ffd6e0; border-radius: 8px;
+      font-family: inherit; font-size: 13px; color: #555;
+      background: white; cursor: pointer; outline: none;
+    }
+    .config-apply {
+      background: linear-gradient(135deg,#ff6b9d,#c44dff); color: white;
+      border: none; padding: 8px 18px; border-radius: 8px;
+      font-family: inherit; font-size: 13px; font-weight: 700;
+      cursor: pointer; transition: 0.2s;
+    }
+    .config-apply:hover { transform: scale(1.05); }
+    .config-hint {
+      font-size: 11px; color: #cc88aa; margin-top: 8px; line-height: 1.6;
+    }
+    .config-hint b { color: #c44dff; }
 
     /* ===== ПАНЕЛЬ ===== */
     .panel {
-      background: white;
-      border-radius: 16px;
-      margin-bottom: 16px;
-      overflow: hidden;
-      box-shadow: 0 4px 20px rgba(255, 107, 157, 0.15);
+      background: white; border-radius: 16px; margin-bottom: 16px;
+      overflow: hidden; box-shadow: 0 4px 20px rgba(255,107,157,0.15);
       border: 2px solid #ffd6e0;
-      transition: transform 0.2s;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.3s;
+      animation: slideUp 0.6s ease-out both;
     }
-    .panel:hover {
-      transform: scale(1.01);
+    .panel:hover  { transform: scale(1.01); box-shadow: 0 6px 28px rgba(255,107,157,0.25); }
+    .panel.active {
+      border-color: #c44dff;
+      box-shadow: 0 0 0 3px rgba(196,77,255,0.2), 0 6px 28px rgba(255,107,157,0.25);
+    }
+    .panel:nth-child(3)  { animation-delay: 0.05s; }
+    .panel:nth-child(4)  { animation-delay: 0.10s; }
+    .panel:nth-child(5)  { animation-delay: 0.15s; }
+    .panel:nth-child(6)  { animation-delay: 0.20s; }
+    .panel:nth-child(7)  { animation-delay: 0.25s; }
+    .panel:nth-child(8)  { animation-delay: 0.30s; }
+    .panel:nth-child(9)  { animation-delay: 0.35s; }
+    .panel:nth-child(10) { animation-delay: 0.40s; }
+    .panel:nth-child(11) { animation-delay: 0.45s; }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
     .panel-header {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 16px 8px;
+      display: flex; align-items: center;
+      justify-content: space-between; padding: 12px 16px 8px;
     }
+    .panel-header-left { display: flex; align-items: center; gap: 8px; }
     .panel-number {
-      background: linear-gradient(135deg, #ff6b9d, #c44dff);
-      color: white;
-      width: 28px; height: 28px;
-      border-radius: 50%;
+      background: linear-gradient(135deg,#ff6b9d,#c44dff); color: white;
+      width: 28px; height: 28px; border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      font-size: 13px; font-weight: 700;
-      flex-shrink: 0;
+      font-size: 13px; font-weight: 700; flex-shrink: 0;
     }
-    .panel-scene {
-      font-size: 12px;
-      color: #c44dff;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+    .panel-scene { font-size: 12px; color: #c44dff; font-weight: 700; }
+
+    .speak-btn {
+      background: linear-gradient(135deg,#ff6b9d,#c44dff); color: white;
+      border: none; width: 36px; height: 36px; border-radius: 50%;
+      font-size: 16px; cursor: pointer; transition: all 0.2s;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .speak-btn:hover  { transform: scale(1.15); }
+    .speak-btn:active { transform: scale(0.9); }
+    .speak-btn.speaking {
+      animation: pulse 0.8s ease-in-out infinite;
+      background: linear-gradient(135deg,#ff4488,#aa22dd);
+    }
+    @keyframes pulse {
+      0%,100% { box-shadow: 0 0 0 0 rgba(196,77,255,0.5); }
+      50%      { box-shadow: 0 0 0 10px rgba(196,77,255,0); }
     }
 
-    /* ===== ИЛЛЮСТРАЦИЯ (эмодзи-сцена) ===== */
-    .panel-illustration {
-      background: linear-gradient(135deg, #fff8f0, #fff0f5);
-      padding: 20px;
-      text-align: center;
-      font-size: 48px;
-      line-height: 1.4;
-      border-top: 1px dashed #ffd6e0;
-      border-bottom: 1px dashed #ffd6e0;
-      min-height: 80px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
+    /* Картинка */
+    .panel-image-wrapper {
+      position: relative; overflow: hidden;
+      border-top: 1px dashed #ffd6e0; border-bottom: 1px dashed #ffd6e0;
+      background: #fff8fa; min-height: 120px;
     }
-
-    /* ===== ДИАЛОГ ===== */
-    .dialogue {
-      padding: 14px 16px;
+    .panel-image {
+      width: 100%; display: block; transition: transform 0.4s;
     }
+    .panel:hover .panel-image { transform: scale(1.03); }
 
+    /* Заглушка при ошибке загрузки */
+    .img-placeholder {
+      position: absolute; inset: 0;
+      display: none; align-items: center; justify-content: center;
+      flex-direction: column; gap: 6px;
+      background: linear-gradient(135deg,#fff0f5,#ffe4ec);
+      color: #cc88aa; font-size: 13px; text-align: center; padding: 20px;
+    }
+    .img-placeholder .big-icon { font-size: 36px; }
+    .panel-image-wrapper.img-error .img-placeholder { display: flex; }
+    .panel-image-wrapper.img-error .panel-image     { display: none; }
+
+    /* Диалог */
+    .dialogue { padding: 14px 16px; }
     .speech-bubble {
-      background: linear-gradient(135deg, #fff5f8, #fff);
-      border: 2px solid #ffb3cc;
-      border-radius: 16px;
-      padding: 12px 14px;
-      margin-bottom: 10px;
-      position: relative;
+      border-radius: 16px; padding: 12px 14px; margin-bottom: 10px;
+      transition: opacity 0.3s, filter 0.3s;
     }
+    .speech-bubble:last-of-type { margin-bottom: 0; }
     .speech-bubble.waiter {
-      background: linear-gradient(135deg, #f0f8ff, #fff);
-      border-color: #99ccff;
+      background: linear-gradient(135deg,#f0f8ff,#fff); border: 2px solid #99ccff;
     }
     .speech-bubble.sailor {
-      background: linear-gradient(135deg, #fff5f8, #fff);
-      border-color: #ffb3cc;
+      background: linear-gradient(135deg,#fff5f8,#fff); border: 2px solid #ffb3cc;
+    }
+    .speech-bubble.highlight { animation: glowBubble 0.8s ease-in-out; }
+    @keyframes glowBubble {
+      0%,100% { filter: brightness(1); }
+      50%      { filter: brightness(1.12) saturate(1.2); }
     }
 
     .speaker {
-      font-size: 11px;
-      font-weight: 700;
-      margin-bottom: 6px;
-      display: flex;
-      align-items: center;
-      gap: 5px;
+      font-size: 11px; font-weight: 700; margin-bottom: 6px;
+      display: flex; align-items: center; gap: 5px;
     }
     .speaker.waiter { color: #4488cc; }
     .speaker.sailor { color: #cc4488; }
-
     .chinese {
-      font-family: 'Noto Sans SC', sans-serif;
-      font-size: 18px;
-      font-weight: 700;
-      color: #333;
-      margin-bottom: 4px;
-      line-height: 1.5;
+      font-family: 'Noto Sans SC',sans-serif; font-size: 17px;
+      font-weight: 700; color: #333; margin-bottom: 4px; line-height: 1.5;
     }
-    .pinyin {
-      font-size: 12px;
-      color: #999;
-      font-style: italic;
-      margin-bottom: 6px;
-    }
+    .pinyin { font-size: 12px; color: #aaa; font-style: italic; margin-bottom: 6px; }
     .russian {
-      font-size: 14px;
-      color: #666;
-      line-height: 1.4;
-      padding-left: 10px;
-      border-left: 3px solid #ffd6e0;
+      font-size: 13px; color: #777; line-height: 1.4;
+      padding-left: 10px; border-left: 3px solid #ffd6e0;
     }
-    .speech-bubble.waiter .russian {
-      border-left-color: #99ccff;
+    .speech-bubble.waiter .russian { border-left-color: #99ccff; }
+
+    .now-playing {
+      display: none; align-items: center; gap: 6px;
+      font-size: 11px; color: #c44dff; font-weight: 700;
+      padding: 6px 12px; background: #faf0ff;
+      border-radius: 20px; margin-top: 8px;
+    }
+    .now-playing.visible { display: flex; }
+    .sound-bars { display: flex; gap: 2px; align-items: flex-end; height: 12px; }
+    .sound-bars span {
+      width: 3px; background: #c44dff; border-radius: 2px;
+      animation: bar 0.6s ease-in-out infinite;
+    }
+    .sound-bars span:nth-child(1) { height: 4px;  animation-delay: 0s; }
+    .sound-bars span:nth-child(2) { height: 8px;  animation-delay: 0.15s; }
+    .sound-bars span:nth-child(3) { height: 5px;  animation-delay: 0.3s; }
+    .sound-bars span:nth-child(4) { height: 10px; animation-delay: 0.1s; }
+    @keyframes bar {
+      0%,100% { transform: scaleY(1); }
+      50%      { transform: scaleY(0.4); }
     }
 
     /* ===== СЛОВАРЬ ===== */
     .vocab-section {
-      background: white;
-      border-radius: 16px;
-      padding: 20px 16px;
-      margin-top: 10px;
-      box-shadow: 0 4px 20px rgba(255, 107, 157, 0.15);
-      border: 2px solid #ffd6e0;
+      background: white; border-radius: 16px; padding: 20px 16px;
+      margin-top: 10px; box-shadow: 0 4px 20px rgba(255,107,157,0.15);
+      border: 2px solid #ffd6e0; animation: slideUp 0.6s ease-out 0.5s both;
     }
     .vocab-title {
-      text-align: center;
-      font-size: 16px;
-      font-weight: 700;
-      color: #c44dff;
-      margin-bottom: 14px;
+      text-align: center; font-size: 16px; font-weight: 700;
+      color: #c44dff; margin-bottom: 14px;
     }
-    .vocab-table {
-      width: 100%;
-      border-collapse: collapse;
-    }
+    .vocab-table { width: 100%; border-collapse: collapse; }
     .vocab-table th {
-      background: linear-gradient(135deg, #ff6b9d, #c44dff);
-      color: white;
-      padding: 8px 10px;
-      font-size: 12px;
-      text-align: left;
+      background: linear-gradient(135deg,#ff6b9d,#c44dff); color: white;
+      padding: 8px 10px; font-size: 12px; text-align: left;
     }
     .vocab-table th:first-child { border-radius: 8px 0 0 0; }
-    .vocab-table th:last-child { border-radius: 0 8px 0 0; }
+    .vocab-table th:last-child  { border-radius: 0 8px 0 0; }
     .vocab-table td {
-      padding: 8px 10px;
-      font-size: 13px;
-      border-bottom: 1px solid #ffe4ec;
-      color: #555;
+      padding: 8px 10px; font-size: 13px;
+      border-bottom: 1px solid #ffe4ec; color: #555;
     }
-    .vocab-table tr:nth-child(even) td {
-      background: #fff8fa;
-    }
+    .vocab-table tr:nth-child(even) td { background: #fff8fa; }
     .vocab-table .hanzi {
-      font-family: 'Noto Sans SC', sans-serif;
-      font-weight: 700;
-      color: #333;
-      font-size: 15px;
+      font-family: 'Noto Sans SC',sans-serif; font-weight: 700;
+      color: #333; font-size: 15px;
     }
+    .vocab-speak {
+      background: none; border: 1px solid #ddd; border-radius: 50%;
+      width: 26px; height: 26px; cursor: pointer; font-size: 12px; transition: 0.2s;
+    }
+    .vocab-speak:hover { background: #ffe4ec; border-color: #ff6b9d; }
 
     /* ===== ФУТЕР ===== */
     .footer {
-      text-align: center;
-      padding: 20px;
-      color: #cc88aa;
-      font-size: 12px;
+      text-align: center; padding: 24px 20px; color: #cc88aa;
+      font-size: 12px; animation: slideUp 0.6s ease-out 0.6s both;
     }
-    .footer .moon { font-size: 24px; display: block; margin-bottom: 6px; }
+    .footer .moon { font-size: 28px; display: block; margin-bottom: 8px; }
 
-    /* ===== АНИМАЦИЯ ПОЯВЛЕНИЯ ===== */
-    .panel, .vocab-section, .title-card {
-      animation: slideUp 0.6s ease-out both;
+    /* ===== TOAST ===== */
+    .toast {
+      position: fixed; bottom: 20px; left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: rgba(50,20,60,0.92); color: white;
+      padding: 12px 24px; border-radius: 30px;
+      font-size: 13px; font-family: inherit; z-index: 999;
+      transition: transform 0.3s ease; white-space: nowrap;
+      pointer-events: none;
     }
-    .panel:nth-child(2) { animation-delay: 0.1s; }
-    .panel:nth-child(3) { animation-delay: 0.2s; }
-    .panel:nth-child(4) { animation-delay: 0.3s; }
-    .panel:nth-child(5) { animation-delay: 0.4s; }
-    .panel:nth-child(6) { animation-delay: 0.5s; }
-    .panel:nth-child(7) { animation-delay: 0.6s; }
-    .panel:nth-child(8) { animation-delay: 0.7s; }
-    .panel:nth-child(9) { animation-delay: 0.8s; }
-
-    @keyframes slideUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
   </style>
 </head>
 <body>
 
 <div class="manga-container">
 
-  <!-- ЗАГОЛОВОК -->
+  <!-- ===== ЗАГОЛОВОК ===== -->
   <div class="title-card">
     <h1>🌙 美少女战士在餐厅</h1>
-    <p>Sailor Moon в китайском ресторане<br>月野うさぎ ・ 中国語レストラン</p>
+    <p class="subtitle">Sailor Moon в китайском ресторане<br>月野うさぎ ・ 中国語レストランレッスン</p>
+    <button class="play-all-btn" id="playAllBtn" onclick="playAll()">
+      🔊 Воспроизвести весь диалог
+    </button>
   </div>
 
-  <!-- ПАНЕЛЬ 1 -->
-  <div class="panel">
-    <div class="panel-header">
-      <div class="panel-number">1</div>
-      <div class="panel-scene">🚪 Приветствие у входа</div>
+  <!-- ===== НАСТРОЙКА ФАЙЛОВ ===== -->
+  <div class="config-bar">
+    <label>⚙️ Настройка имён файлов (если картинки не отображаются — поменяй здесь)</label>
+    <div class="config-row">
+      <input class="config-input" id="prefixInput" type="text" value="IMG_7460"
+             placeholder="Префикс первого файла" />
+      <select class="config-select" id="extSelect">
+        <option value=".png" selected>.png</option>
+        <option value=".jpg">.jpg</option>
+        <option value=".jpeg">.jpeg</option>
+        <option value=".PNG">.PNG</option>
+        <option value=".JPG">.JPG</option>
+        <option value=".webp">.webp</option>
+      </select>
+      <button class="config-apply" onclick="applyConfig()">✅ Применить</button>
     </div>
-    <div class="panel-illustration">🧑‍🍳  🌙</div>
+    <div class="config-hint">
+      📁 Папка: <b>img/</b> &nbsp;|&nbsp;
+      Файлы: <b id="hintFiles">img/IMG_7460.png … img/IMG_7468.png</b><br>
+      Префикс = имя первого файла без расширения. Нумерация +1 автоматически.
+    </div>
+  </div>
+
+  <!-- ============================================================
+       ПАНЕЛЬ 1 — Приветствие у входа
+       Файл: img/IMG_7460.png
+  ============================================================ -->
+  <div class="panel" id="panel1">
+    <div class="panel-header">
+      <div class="panel-header-left">
+        <div class="panel-number">1</div>
+        <div class="panel-scene">🚪 Приветствие у входа</div>
+      </div>
+      <button class="speak-btn" onclick="speakPanel(1)" title="Озвучить">🔊</button>
+    </div>
+    <div class="panel-image-wrapper" id="wrap1">
+      <img class="panel-image" id="img1" src="img/IMG_7460.png" alt="Панель 1 — официант у входа"
+           onerror="this.parentElement.classList.add('img-error')" />
+      <div class="img-placeholder">
+        <div class="big-icon">🖼️</div>
+        <div>IMG_7460.png не найден<br><small>Проверь папку img/</small></div>
+      </div>
+    </div>
     <div class="dialogue">
-      <div class="speech-bubble waiter">
+      <div class="speech-bubble waiter" id="bubble1-1">
         <div class="speaker waiter">🧑‍ Официант</div>
         <div class="chinese">你好，欢迎光临！请问几位？</div>
         <div class="pinyin">Nǐ hǎo, huānyíng guānglín! Qǐngwèn jǐ wèi?</div>
         <div class="russian">Здравствуйте, добро пожаловать! Сколько человек?</div>
       </div>
+      <div class="now-playing" id="np1">
+        <div class="sound-bars"><span></span><span></span><span></span><span></span></div>
+        Воспроизводится...
+      </div>
     </div>
   </div>
 
-  <!-- ПАНЕЛЬ 2 -->
-  <div class="panel">
+  <!-- ============================================================
+       ПАНЕЛЬ 2 — Сэйлор Мун садится за столик
+       Файл: img/IMG_7461.png
+  ============================================================ -->
+  <div class="panel" id="panel2">
     <div class="panel-header">
-      <div class="panel-number">2</div>
-      <div class="panel-scene">🪑 Сэйлор Мун садится за столик</div>
+      <div class="panel-header-left">
+        <div class="panel-number">2</div>
+        <div class="panel-scene">🪑 Сэйлор Мун за столиком</div>
+      </div>
+      <button class="speak-btn" onclick="speakPanel(2)" title="Озвучить">🔊</button>
     </div>
-    <div class="panel-illustration">🌙 ☝️ 😊</div>
+    <div class="panel-image-wrapper" id="wrap2">
+      <img class="panel-image" id="img2" src="img/IMG_7461.png" alt="Панель 2 — СМ за столиком"
+           onerror="this.parentElement.classList.add('img-error')" />
+      <div class="img-placeholder">
+        <div class="big-icon">🖼️</div>
+        <div>IMG_7461.png не найден<br><small>Проверь папку img/</small></div>
+      </div>
+    </div>
     <div class="dialogue">
-      <div class="speech-bubble sailor">
+      <div class="speech-bubble sailor" id="bubble2-1">
         <div class="speaker sailor">🌙 Сэйлор Мун</div>
         <div class="chinese">就我一个人。</div>
         <div class="pinyin">Jiù wǒ yí gè rén.</div>
         <div class="russian">Только я одна.</div>
       </div>
+      <div class="now-playing" id="np2">
+        <div class="sound-bars"><span></span><span></span><span></span><span></span></div>
+        Воспроизводится...
+      </div>
     </div>
   </div>
 
-  <!-- ПАНЕЛЬ 3 -->
-  <div class="panel">
+  <!-- ============================================================
+       ПАНЕЛЬ 3 — Официант подаёт меню
+       Файл: img/IMG_7462.png
+  ============================================================ -->
+  <div class="panel" id="panel3">
     <div class="panel-header">
-      <div class="panel-number">3</div>
-      <div class="panel-scene">📋 Официант подаёт меню</div>
+      <div class="panel-header-left">
+        <div class="panel-number">3</div>
+        <div class="panel-scene">📋 Официант подаёт меню</div>
+      </div>
+      <button class="speak-btn" onclick="speakPanel(3)" title="Озвучить">🔊</button>
     </div>
-    <div class="panel-illustration">🧑‍🍳 📖 🌙</div>
+    <div class="panel-image-wrapper" id="wrap3">
+      <img class="panel-image" id="img3" src="img/IMG_7462.png" alt="Панель 3 — меню"
+           onerror="this.parentElement.classList.add('img-error')" />
+      <div class="img-placeholder">
+        <div class="big-icon">🖼️</div>
+        <div>IMG_7462.png не найден<br><small>Проверь папку img/</small></div>
+      </div>
+    </div>
     <div class="dialogue">
-      <div class="speech-bubble waiter">
+      <div class="speech-bubble waiter" id="bubble3-1">
         <div class="speaker waiter">🧑‍🍳 Официант</div>
         <div class="chinese">这是菜单，需要我推荐吗？</div>
         <div class="pinyin">Zhè shì càidān, xūyào wǒ tuījiàn ma?</div>
         <div class="russian">Вот меню. Нужны ли рекомендации?</div>
       </div>
+      <div class="now-playing" id="np3">
+        <div class="sound-bars"><span></span><span></span><span></span><span></span></div>
+        Воспроизводится...
+      </div>
     </div>
   </div>
 
-  <!-- ПАНЕЛЬ 4 -->
-  <div class="panel">
+  <!-- ============================================================
+       ПАНЕЛЬ 4 — Рекомендация и заказ
+       Файл: img/IMG_7463.png
+  ============================================================ -->
+  <div class="panel" id="panel4">
     <div class="panel-header">
-      <div class="panel-number">4</div>
-      <div class="panel-scene">⭐ Рекомендация и заказ</div>
+      <div class="panel-header-left">
+        <div class="panel-number">4</div>
+        <div class="panel-scene">⭐ Рекомендация и заказ</div>
+      </div>
+      <button class="speak-btn" onclick="speakPanel(4)" title="Озвучить">🔊</button>
     </div>
-    <div class="panel-illustration">🧑‍🍳 👉 🍜  🌙 </div>
+    <div class="panel-image-wrapper" id="wrap4">
+      <img class="panel-image" id="img4" src="img/IMG_7463.png" alt="Панель 4 — рекомендация"
+           onerror="this.parentElement.classList.add('img-error')" />
+      <div class="img-placeholder">
+        <div class="big-icon">🖼️</div>
+        <div>IMG_7463.png не найден<br><small>Проверь папку img/</small></div>
+      </div>
+    </div>
     <div class="dialogue">
-      <div class="speech-bubble waiter">
+      <div class="speech-bubble waiter" id="bubble4-1">
         <div class="speaker waiter">🧑‍🍳 Официант</div>
         <div class="chinese">招牌菜是红烧牛肉面，炸薯条也很受欢迎。</div>
         <div class="pinyin">Zhāopái cài shì hóngshāo niúròu miàn, zhà shǔtiáo yě hěn shòu huānyíng.</div>
         <div class="russian">Фирменное блюдо — лапша с тушёной говядиной. Картошка фри тоже очень популярна.</div>
       </div>
-      <div class="speech-bubble sailor">
+      <div class="speech-bubble sailor" id="bubble4-2">
         <div class="speaker sailor">🌙 Сэйлор Мун</div>
         <div class="chinese">来一碗牛肉面，一份炸薯条！</div>
         <div class="pinyin">Lái yì wǎn niúròu miàn, yí fèn zhà shǔtiáo!</div>
         <div class="russian">Одну порцию лапши с говядиной и одну порцию картошки фри!</div>
       </div>
+      <div class="now-playing" id="np4">
+        <div class="sound-bars"><span></span><span></span><span></span><span></span></div>
+        Воспроизводится...
+      </div>
     </div>
   </div>
 
-  <!-- ПАНЕЛЬ 5 -->
-  <div class="panel">
+  <!-- ============================================================
+       ПАНЕЛЬ 5 — Заказ напитка
+       Файл: img/IMG_7464.png
+  ============================================================ -->
+  <div class="panel" id="panel5">
     <div class="panel-header">
-      <div class="panel-number">5</div>
-      <div class="panel-scene">🧃 Заказ напитка</div>
+      <div class="panel-header-left">
+        <div class="panel-number">5</div>
+        <div class="panel-scene">🧃 Заказ напитка</div>
+      </div>
+      <button class="speak-btn" onclick="speakPanel(5)" title="Озвучить">🔊</button>
     </div>
-    <div class="panel-illustration">🌙  🍊 🧊 ✨</div>
+    <div class="panel-image-wrapper" id="wrap5">
+      <img class="panel-image" id="img5" src="img/IMG_7464.png" alt="Панель 5 — апельсиновый сок"
+           onerror="this.parentElement.classList.add('img-error')" />
+      <div class="img-placeholder">
+        <div class="big-icon">🖼️</div>
+        <div>IMG_7464.png не найден<br><small>Проверь папку img/</small></div>
+      </div>
+    </div>
     <div class="dialogue">
-      <div class="speech-bubble sailor">
+      <div class="speech-bubble sailor" id="bubble5-1">
         <div class="speaker sailor">🌙 Сэйлор Мун</div>
         <div class="chinese">来一杯橙汁，要冰的！谢谢！</div>
         <div class="pinyin">Lái yì bēi chéngzhī, yào bīng de! Xièxie!</div>
         <div class="russian">Один стакан апельсинового сока со льдом! Спасибо! 🧡</div>
       </div>
+      <div class="now-playing" id="np5">
+        <div class="sound-bars"><span></span><span></span><span></span><span></span></div>
+        Воспроизводится...
+      </div>
     </div>
   </div>
 
-  <!-- ПАНЕЛЬ 6 -->
-  <div class="panel">
+  <!-- ============================================================
+       ПАНЕЛЬ 6 — Подача блюда
+       Файл: img/IMG_7465.png
+  ============================================================ -->
+  <div class="panel" id="panel6">
     <div class="panel-header">
-      <div class="panel-number">6</div>
-      <div class="panel-scene">🍽️ Подача блюда</div>
+      <div class="panel-header-left">
+        <div class="panel-number">6</div>
+        <div class="panel-scene">🍽️ Подача блюда</div>
+      </div>
+      <button class="speak-btn" onclick="speakPanel(6)" title="Озвучить">🔊</button>
     </div>
-    <div class="panel-illustration">🧑🍳  🍟 </div>
+    <div class="panel-image-wrapper" id="wrap6">
+      <img class="panel-image" id="img6" src="img/IMG_7465.png" alt="Панель 6 — подача блюда"
+           onerror="this.parentElement.classList.add('img-error')" />
+      <div class="img-placeholder">
+        <div class="big-icon">🖼️</div>
+        <div>IMG_7465.png не найден<br><small>Проверь папку img/</small></div>
+      </div>
+    </div>
     <div class="dialogue">
-      <div class="speech-bubble waiter">
+      <div class="speech-bubble waiter" id="bubble6-1">
         <div class="speaker waiter">🧑‍🍳 Официант</div>
         <div class="chinese">您的菜来了！请慢用。</div>
         <div class="pinyin">Nín de cài lái le! Qǐng màn yòng.</div>
         <div class="russian">Ваш заказ готов! Приятного аппетита.</div>
       </div>
+      <div class="now-playing" id="np6">
+        <div class="sound-bars"><span></span><span></span><span></span><span></span></div>
+        Воспроизводится...
+      </div>
     </div>
   </div>
 
-  <!-- ПАНЕЛЬ 7 -->
-  <div class="panel">
+  <!-- ============================================================
+       ПАНЕЛЬ 7 — Дегустация
+       Файл: img/IMG_7466.png
+  ============================================================ -->
+  <div class="panel" id="panel7">
     <div class="panel-header">
-      <div class="panel-number">7</div>
-      <div class="panel-scene">😋 Дегустация</div>
+      <div class="panel-header-left">
+        <div class="panel-number">7</div>
+        <div class="panel-scene">😋 Дегустация</div>
+      </div>
+      <button class="speak-btn" onclick="speakPanel(7)" title="Озвучить">🔊</button>
     </div>
-    <div class="panel-illustration">🌙 🥢 🍜 ⭐✨⭐</div>
+    <div class="panel-image-wrapper" id="wrap7">
+      <img class="panel-image" id="img7" src="img/IMG_7466.png" alt="Панель 7 — ест лапшу"
+           onerror="this.parentElement.classList.add('img-error')" />
+      <div class="img-placeholder">
+        <div class="big-icon">🖼️</div>
+        <div>IMG_7466.png не найден<br><small>Проверь папку img/</small></div>
+      </div>
+    </div>
     <div class="dialogue">
-      <div class="speech-bubble sailor">
+      <div class="speech-bubble sailor" id="bubble7-1">
         <div class="speaker sailor">🌙 Сэйлор Мун</div>
         <div class="chinese">嗯～太好吃了！</div>
         <div class="pinyin">Ńg~ Tài hǎo chī le!</div>
         <div class="russian">Ммм~ Как вкусно! ✨</div>
       </div>
+      <div class="now-playing" id="np7">
+        <div class="sound-bars"><span></span><span></span><span></span><span></span></div>
+        Воспроизводится...
+      </div>
     </div>
   </div>
 
-  <!-- ПАНЕЛЬ 8 -->
-  <div class="panel">
+  <!-- ============================================================
+       ПАНЕЛЬ 8 — Оплата счёта
+       Файл: img/IMG_7467.png
+  ============================================================ -->
+  <div class="panel" id="panel8">
     <div class="panel-header">
-      <div class="panel-number">8</div>
-      <div class="panel-scene">💰 Оплата счёта</div>
+      <div class="panel-header-left">
+        <div class="panel-number">8</div>
+        <div class="panel-scene">💰 Оплата счёта</div>
+      </div>
+      <button class="speak-btn" onclick="speakPanel(8)" title="Озвучить">🔊</button>
     </div>
-    <div class="panel-illustration">🌙 📱 💴 🧑‍🍳</div>
+    <div class="panel-image-wrapper" id="wrap8">
+      <img class="panel-image" id="img8" src="img/IMG_7467.png" alt="Панель 8 — оплата"
+           onerror="this.parentElement.classList.add('img-error')" />
+      <div class="img-placeholder">
+        <div class="big-icon">🖼️</div>
+        <div>IMG_7467.png не найден<br><small>Проверь папку img/</small></div>
+      </div>
+    </div>
     <div class="dialogue">
-      <div class="speech-bubble sailor">
+      <div class="speech-bubble sailor" id="bubble8-1">
         <div class="speaker sailor">🌙 Сэйлор Мун</div>
         <div class="chinese">服务员，买单！</div>
         <div class="pinyin">Fúwùyuán, mǎidān!</div>
         <div class="russian">Официант, счёт, пожалуйста!</div>
       </div>
-      <div class="speech-bubble waiter">
+      <div class="speech-bubble waiter" id="bubble8-2">
         <div class="speaker waiter">🧑‍🍳 Официант</div>
         <div class="chinese">一共四十五元。</div>
         <div class="pinyin">Yígòng sìshíwǔ yuán.</div>
         <div class="russian">Итого 45 юаней.</div>
       </div>
+      <div class="now-playing" id="np8">
+        <div class="sound-bars"><span></span><span></span><span></span><span></span></div>
+        Воспроизводится...
+      </div>
     </div>
   </div>
 
-  <!-- ПАНЕЛЬ 9 -->
-  <div class="panel">
+  <!-- ============================================================
+       ПАНЕЛЬ 9 — Прощание
+       Файл: img/IMG_7468.png
+  ============================================================ -->
+  <div class="panel" id="panel9">
     <div class="panel-header">
-      <div class="panel-number">9</div>
-      <div class="panel-scene">👋 Прощание</div>
+      <div class="panel-header-left">
+        <div class="panel-number">9</div>
+        <div class="panel-scene">👋 Прощание</div>
+      </div>
+      <button class="speak-btn" onclick="speakPanel(9)" title="Озвучить">🔊</button>
     </div>
-    <div class="panel-illustration">🌙  💕 🧑‍🍳 </div>
+    <div class="panel-image-wrapper" id="wrap9">
+      <img class="panel-image" id="img9" src="img/IMG_7468.png" alt="Панель 9 — прощание"
+           onerror="this.parentElement.classList.add('img-error')" />
+      <div class="img-placeholder">
+        <div class="big-icon">🖼️</div>
+        <div>IMG_7468.png не найден<br><small>Проверь папку img/</small></div>
+      </div>
+    </div>
     <div class="dialogue">
-      <div class="speech-bubble sailor">
+      <div class="speech-bubble sailor" id="bubble9-1">
         <div class="speaker sailor">🌙 Сэйлор Мун</div>
         <div class="chinese">再见！下次还来！</div>
         <div class="pinyin">Zàijiàn! Xià cì hái lái!</div>
         <div class="russian">До свидания! Приду ещё раз!</div>
       </div>
-      <div class="speech-bubble waiter">
+      <div class="speech-bubble waiter" id="bubble9-2">
         <div class="speaker waiter">🧑‍🍳 Официант</div>
         <div class="chinese">欢迎下次再来！</div>
         <div class="pinyin">Huānyíng xià cì zài lái!</div>
         <div class="russian">Будем рады видеть вас снова! 💛</div>
       </div>
+      <div class="now-playing" id="np9">
+        <div class="sound-bars"><span></span><span></span><span></span><span></span></div>
+        Воспроизводится...
+      </div>
     </div>
   </div>
 
-  <!-- СЛОВАРЬ -->
+  <!-- ===== СЛОВАРЬ ===== -->
   <div class="vocab-section">
     <div class="vocab-title">📚 Словарь — 词汇 Cíhuì</div>
     <table class="vocab-table">
@@ -435,37 +649,300 @@
           <th>汉字 Hànzi</th>
           <th>Пиньинь</th>
           <th>Русский</th>
+          <th>🔊</th>
         </tr>
       </thead>
-      <tbody>
-        <tr><td class="hanzi">你好</td><td>nǐ hǎo</td><td>здравствуйте</td></tr>
-        <tr><td class="hanzi">欢迎光临</td><td>huānyíng guānglín</td><td>добро пожаловать</td></tr>
-        <tr><td class="hanzi">几位</td><td>jǐ wèi</td><td>сколько человек</td></tr>
-        <tr><td class="hanzi">一个人</td><td>yí gè rén</td><td>один человек</td></tr>
-        <tr><td class="hanzi">菜单</td><td>càidān</td><td>меню</td></tr>
-        <tr><td class="hanzi">推荐</td><td>tuījiàn</td><td>рекомендовать</td></tr>
-        <tr><td class="hanzi">招牌菜</td><td>zhāopái cài</td><td>фирменное блюдо</td></tr>
-        <tr><td class="hanzi">红烧牛肉面</td><td>hóngshāo niúròu miàn</td><td>лапша с говядиной</td></tr>
-        <tr><td class="hanzi">炸薯条</td><td>zhà shǔtiáo</td><td>картошка фри</td></tr>
-        <tr><td class="hanzi">橙汁</td><td>chéngzhī</td><td>апельсиновый сок</td></tr>
-        <tr><td class="hanzi">冰的</td><td>bīng de</td><td>со льдом</td></tr>
-        <tr><td class="hanzi">请慢用</td><td>qǐng màn yòng</td><td>приятного аппетита</td></tr>
-        <tr><td class="hanzi">好吃</td><td>hǎo chī</td><td>вкусно</td></tr>
-        <tr><td class="hanzi">买单</td><td>mǎidān</td><td>оплатить счёт</td></tr>
-        <tr><td class="hanzi">元</td><td>yuán</td><td>юань</td></tr>
-        <tr><td class="hanzi">再见</td><td>zàijiàn</td><td>до свидания</td></tr>
-      </tbody>
+      <tbody id="vocabBody"></tbody>
     </table>
   </div>
 
-  <!-- ФУТЕР -->
+  <!-- ===== ФУТЕР ===== -->
   <div class="footer">
     <span class="moon">🌙</span>
     美少女战士 × 中国语レッスン<br>
-    Sailor Moon Chinese Lesson • 2025
+    Sailor Moon Chinese Lesson • 2025<br><br>
+    <small>Нажми 🔊 чтобы услышать произношение · Лучше работает в Chrome</small>
   </div>
 
-</div>
+</div><!-- /manga-container -->
+
+<div class="toast" id="toast"></div>
+
+<!-- ===================================================
+     JAVASCRIPT
+=================================================== -->
+<script>
+  // ── Конфигурация файлов ──────────────────────────────
+  let FILE_PREFIX = "IMG_7460";
+  let FILE_EXT    = ".png";
+  const IMG_DIR   = "img/";
+  const TOTAL     = 9;
+
+  // ── Применить настройки из интерфейса ────────────────
+  function applyConfig() {
+    FILE_PREFIX = document.getElementById("prefixInput").value.trim();
+    FILE_EXT    = document.getElementById("extSelect").value;
+
+    for (let i = 1; i <= TOTAL; i++) {
+      const digits = FILE_PREFIX.match(/\d+/);
+      const start  = digits ? parseInt(digits[0]) : 0;
+      const base   = digits
+        ? FILE_PREFIX.replace(/\d+/, String(start + i - 1))
+        : FILE_PREFIX + (i - 1);
+
+      const src  = IMG_DIR + base + FILE_EXT;
+      const img  = document.getElementById(`img${i}`);
+      const wrap = document.getElementById(`wrap${i}`);
+
+      wrap.classList.remove("img-error");
+      img.src = src;
+
+      // Обновить текст заглушки
+      const ph = wrap.querySelector(".img-placeholder div:last-child");
+      if (ph) ph.innerHTML = `${base}${FILE_EXT} не найден<br><small>Проверь папку img/</small>`;
+    }
+
+    // Обновить подсказку
+    const d = FILE_PREFIX.match(/\d+/);
+    const s = d ? parseInt(d[0]) : 0;
+    const e = s + TOTAL - 1;
+    const b = d ? FILE_PREFIX.replace(/\d+/, "") : FILE_PREFIX;
+    document.getElementById("hintFiles").textContent =
+      `img/${b}${s}${FILE_EXT} … img/${b}${e}${FILE_EXT}`;
+
+    showToast(`✅ Применено: ${IMG_DIR}${FILE_PREFIX}…${FILE_EXT}`);
+  }
+
+  // ── Данные диалога ───────────────────────────────────
+  const panelsData = [
+    { id:1, lines:[
+      { text:"你好，欢迎光临！请问几位？", bubble:"bubble1-1", voice:"waiter" }
+    ]},
+    { id:2, lines:[
+      { text:"就我一个人。", bubble:"bubble2-1", voice:"sailor" }
+    ]},
+    { id:3, lines:[
+      { text:"这是菜单，需要我推荐吗？", bubble:"bubble3-1", voice:"waiter" }
+    ]},
+    { id:4, lines:[
+      { text:"招牌菜是红烧牛肉面，炸薯条也很受欢迎。", bubble:"bubble4-1", voice:"waiter" },
+      { text:"来一碗牛肉面，一份炸薯条！", bubble:"bubble4-2", voice:"sailor" }
+    ]},
+    { id:5, lines:[
+      { text:"来一杯橙汁，要冰的！谢谢！", bubble:"bubble5-1", voice:"sailor" }
+    ]},
+    { id:6, lines:[
+      { text:"您的菜来了！请慢用。", bubble:"bubble6-1", voice:"waiter" }
+    ]},
+    { id:7, lines:[
+      { text:"嗯，太好吃了！", bubble:"bubble7-1", voice:"sailor" }
+    ]},
+    { id:8, lines:[
+      { text:"服务员，买单！", bubble:"bubble8-1", voice:"sailor" },
+      { text:"一共四十五元。", bubble:"bubble8-2", voice:"waiter" }
+    ]},
+    { id:9, lines:[
+      { text:"再见！下次还来！", bubble:"bubble9-1", voice:"sailor" },
+      { text:"欢迎下次再来！", bubble:"bubble9-2", voice:"waiter" }
+    ]}
+  ];
+
+  // ── Словарь ──────────────────────────────────────────
+  const vocab = [
+    { hanzi:"你好",       pinyin:"nǐ hǎo",               ru:"здравствуйте" },
+    { hanzi:"欢迎光临",   pinyin:"huānyíng guānglín",    ru:"добро пожаловать" },
+    { hanzi:"几位",       pinyin:"jǐ wèi",               ru:"сколько человек" },
+    { hanzi:"一个人",     pinyin:"yí gè rén",            ru:"один человек" },
+    { hanzi:"菜单",       pinyin:"càidān",               ru:"меню" },
+    { hanzi:"推荐",       pinyin:"tuījiàn",              ru:"рекомендовать" },
+    { hanzi:"招牌菜",     pinyin:"zhāopái cài",          ru:"фирменное блюдо" },
+    { hanzi:"红烧牛肉面", pinyin:"hóngshāo niúròu miàn", ru:"лапша с говядиной" },
+    { hanzi:"炸薯条",     pinyin:"zhà shǔtiáo",          ru:"картошка фри" },
+    { hanzi:"橙汁",       pinyin:"chéngzhī",             ru:"апельсиновый сок" },
+    { hanzi:"冰的",       pinyin:"bīng de",              ru:"со льдом" },
+    { hanzi:"请慢用",     pinyin:"qǐng màn yòng",        ru:"приятного аппетита" },
+    { hanzi:"好吃",       pinyin:"hǎo chī",              ru:"вкусно" },
+    { hanzi:"买单",       pinyin:"mǎidān",               ru:"оплатить счёт" },
+    { hanzi:"元",         pinyin:"yuán",                 ru:"юань" },
+    { hanzi:"再见",       pinyin:"zàijiàn",              ru:"до свидания" },
+  ];
+
+  const vocabBody = document.getElementById("vocabBody");
+  vocab.forEach(w => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td class="hanzi">${w.hanzi}</td>
+      <td>${w.pinyin}</td>
+      <td>${w.ru}</td>
+      <td><button class="vocab-speak" onclick="speakWord('${w.hanzi}')" title="Произнести">🔊</button></td>`;
+    vocabBody.appendChild(tr);
+  });
+
+  // ── Голоса ───────────────────────────────────────────
+  let zhVoice = null;
+  function loadVoices() {
+    const v = speechSynthesis.getVoices();
+    zhVoice = v.find(x => x.lang.startsWith("zh"))
+           || v.find(x => x.lang.includes("cmn"))
+           || v.find(x => x.name.toLowerCase().includes("chinese"))
+           || v[0];
+  }
+  speechSynthesis.onvoiceschanged = loadVoices;
+  loadVoices();
+
+  // ── Toast ───────────────────────────────────────────
+  function showToast(msg) {
+    const t = document.getElementById("toast");
+    t.textContent = msg;
+    t.classList.add("show");
+    setTimeout(() => t.classList.remove("show"), 2800);
+  }
+
+  // ── Озвучка слова ────────────────────────────────────
+  function speakWord(text) {
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = "zh-CN"; u.rate = 0.80; u.pitch = 1.1;
+    if (zhVoice) u.voice = zhVoice;
+    speechSynthesis.speak(u);
+  }
+
+  // ── Озвучка панели ───────────────────────────────────
+  function speakPanel(id) {
+    speechSynthesis.cancel();
+    clearAll();
+
+    const panel   = panelsData.find(p => p.id === id);
+    if (!panel) return;
+
+    const panelEl = document.getElementById(`panel${id}`);
+    const npEl    = document.getElementById(`np${id}`);
+    const btn     = panelEl.querySelector(".speak-btn");
+
+    panelEl.classList.add("active");
+    npEl.classList.add("visible");
+    btn.classList.add("speaking");
+    panelEl.scrollIntoView({ behavior:"smooth", block:"center" });
+
+    let li = 0;
+    (function next() {
+      if (li >= panel.lines.length) {
+        panelEl.classList.remove("active");
+        npEl.classList.remove("visible");
+        btn.classList.remove("speaking");
+        resetBubbles();
+        return;
+      }
+      const line   = panel.lines[li];
+      const bubble = document.getElementById(line.bubble);
+
+      dimAllBubbles();
+      bubble.style.opacity = "1";
+      bubble.classList.add("highlight");
+
+      const u = new SpeechSynthesisUtterance(line.text);
+      u.lang  = "zh-CN";
+      u.rate  = line.voice === "sailor" ? 0.88 : 0.80;
+      u.pitch = line.voice === "sailor" ? 1.35 : 0.88;
+      if (zhVoice) u.voice = zhVoice;
+
+      u.onend   = () => { bubble.classList.remove("highlight"); li++; setTimeout(next, 360); };
+      u.onerror = () => { bubble.classList.remove("highlight"); li++; setTimeout(next, 360); };
+      speechSynthesis.speak(u);
+    })();
+  }
+
+  // ── Воспроизвести всё ────────────────────────────────
+  let playingAll = false;
+
+  function playAll() {
+    if (playingAll) { stopAll(); return; }
+
+    playingAll = true;
+    const btn = document.getElementById("playAllBtn");
+    btn.textContent = "⏹ Остановить";
+    btn.classList.add("playing");
+
+    let pi = 0;
+    (function nextPanel() {
+      if (pi >= panelsData.length || !playingAll) { stopAll(); return; }
+
+      const panel   = panelsData[pi];
+      const panelEl = document.getElementById(`panel${pi+1}`);
+      const npEl    = document.getElementById(`np${pi+1}`);
+      const sBtn    = panelEl.querySelector(".speak-btn");
+
+      panelEl.classList.add("active");
+      npEl.classList.add("visible");
+      sBtn.classList.add("speaking");
+      panelEl.scrollIntoView({ behavior:"smooth", block:"center" });
+
+      let li = 0;
+      (function speakLine() {
+        if (li >= panel.lines.length || !playingAll) {
+          panelEl.classList.remove("active");
+          npEl.classList.remove("visible");
+          sBtn.classList.remove("speaking");
+          document.querySelectorAll(`#panel${pi+1} .speech-bubble`)
+                  .forEach(b => b.style.opacity = "1");
+          pi++;
+          setTimeout(nextPanel, 500);
+          return;
+        }
+        const line   = panel.lines[li];
+        const bubble = document.getElementById(line.bubble);
+
+        dimAllBubbles();
+        bubble.style.opacity = "1";
+        bubble.classList.add("highlight");
+
+        const u = new SpeechSynthesisUtterance(line.text);
+        u.lang  = "zh-CN";
+        u.rate  = line.voice === "sailor" ? 0.88 : 0.80;
+        u.pitch = line.voice === "sailor" ? 1.35 : 0.88;
+        if (zhVoice) u.voice = zhVoice;
+
+        u.onend   = () => { bubble.classList.remove("highlight"); li++; setTimeout(speakLine, 300); };
+        u.onerror = () => { bubble.classList.remove("highlight"); li++; setTimeout(speakLine, 300); };
+        speechSynthesis.speak(u);
+      })();
+    })();
+  }
+
+  function stopAll() {
+    speechSynthesis.cancel();
+    playingAll = false;
+    const btn = document.getElementById("playAllBtn");
+    btn.textContent = "🔊 Воспроизвести весь диалог";
+    btn.classList.remove("playing");
+    clearAll();
+    resetBubbles();
+  }
+
+  // ── Утилиты ──────────────────────────────────────────
+  function dimAllBubbles() {
+    document.querySelectorAll(".speech-bubble").forEach(b => b.style.opacity = "0.35");
+  }
+  function resetBubbles() {
+    document.querySelectorAll(".speech-bubble").forEach(b => {
+      b.style.opacity = "1"; b.classList.remove("highlight");
+    });
+  }
+  function clearAll() {
+    document.querySelectorAll(".panel").forEach(p       => p.classList.remove("active"));
+    document.querySelectorAll(".now-playing").forEach(n => n.classList.remove("visible"));
+    document.querySelectorAll(".speak-btn").forEach(b   => b.classList.remove("speaking"));
+  }
+
+  // ── Старт ────────────────────────────────────────────
+  window.addEventListener("load", () => {
+    if (!("speechSynthesis" in window)) {
+      showToast("⚠️ Браузер не поддерживает озвучку — используй Chrome!");
+    } else {
+      showToast("🌙 Нажми 🔊 чтобы услышать китайский!");
+    }
+  });
+</script>
 
 </body>
 </html>
